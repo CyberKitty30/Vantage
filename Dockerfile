@@ -7,8 +7,8 @@ WORKDIR /usr/src/app
 # For this project, we'll copy everything directly as it's a simple server
 COPY . .
 
-# Expose port 5001 as used in server.js
-EXPOSE 5001
+# Expose port 8080 as used in server.js
+EXPOSE 8080
 
 # Command to run the application
 CMD [ "node", "server.js" ]
