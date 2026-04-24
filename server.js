@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 const mimeTypes = {
     '.html': 'text/html',
@@ -15,7 +15,7 @@ const mimeTypes = {
 
 const server = http.createServer((req, res) => {
     // Correctly handle query strings and hashes to prevent 404s
-    const url = new URL(req.url, `http://${req.headers.host}`);
+    const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
     let filePath = '.' + url.pathname;
     
     if (filePath === './') {
@@ -45,8 +45,8 @@ const server = http.createServer((req, res) => {
     });
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
     console.log(`\n============ SYSTEM ONLINE ============`);
-    console.log(`VANTAGE 2026 Core running at: http://localhost:${PORT}`);
+    console.log(`VANTAGE 2026 Core running at: http://0.0.0.0:${PORT}`);
     console.log(`=======================================\n`);
 });
