@@ -1,0 +1,29 @@
+{
+  "name": "vantage-election-assistant",
+  "version": "1.0.0",
+  "description": "VANTAGE | AI-powered Election Assistant for Indian voters — built for the Google Challenge 2026.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "vitest run",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "election",
+    "voting",
+    "india",
+    "ECI",
+    "civic-tech",
+    "google-challenge"
+  ],
+  "author": "VANTAGE Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "jsdom": "^29.0.2",
+    "vitest": "^4.1.5"
+  }
+}
