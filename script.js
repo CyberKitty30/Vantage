@@ -105,8 +105,8 @@ const TRANSLATIONS = {
         'evm-step-1': 'सुनिश्चित करें कि हरी READY लाइट चालू है।', 'evm-step-2': 'अपने उम्मीदवार के बगल में नीला बटन दबाएं।', 'evm-step-3': 'पुष्टि के लिए लंबी बीप सुनें।', 'evm-step-4': 'सटीकता की पुष्टि के लिए VVPAT पर्ची देखें।',
         'vvpat-title': 'VVPAT पर्ची', 'vvpat-recorded': 'आपका वोट इसके लिए दर्ज किया गया था:',
         'myth-title': 'मिथक बनाम वास्तविकता', 'myth-sub': 'सच्चाई जानने के लिए कार्ड पर क्लिक करें!', 'myth-real': 'वास्तविकता',
-        'myth-1-f': '"वोट देने के लिए मुझे बिल्कुल वोटर आईडी (EPIC) कार्ड की आवश्यकता है।"', 'myth-1-b': 'जब तक आपका नाम मतदाता सूची में है, आप 12 स्वीकार्य आईडी में से 1 का उपयोग करके वोट कर सकते हैं।',
-        'myth-2-f': '"मैं अपने मोबाइल फोन से ऑनलाइन वोट डाल सकता हूं।"', 'myth-2-b': 'नहीं। मतदान के लिए सुरक्षा सुनिश्चित करने के लिए बूथ पर आपकी शारीरिक उपस्थिति आवश्यक है।',
+        'myth-1-f': '"वोट देने के लिए मुझे बिल्कुल वोटर आईडी (EPIC) कार्ड की आवश्यकता है।\"', 'myth-1-b': 'जब तक आपका नाम मतदाता सूची में है, आप 12 स्वीकार्य आईडी में से 1 का उपयोग करके वोट कर सकते हैं।',
+        'myth-2-f': '"मैं अपने मोबाइल फोन से ऑनलाइन वोट डाल सकता हूं।\"', 'myth-2-b': 'नहीं। मतदान के लिए सुरक्षा सुनिश्चित करने के लिए बूथ पर आपकी शारीरिक उपस्थिति आवश्यक है।',
         'greet': 'नमस्ते! मैं आपकी क्या सहायता कर सकता हूँ?', 'ready': 'वंटेज तैयार है।',
         'v-overview': 'डैशबोर्ड। आपकी चुनावी तैयारी स्कोर और प्रश्नोत्तरी सहायक दिखाता है।',
         'v-journey': 'मार्गदर्शित यात्रा। पंजीकरण और मतदान के चरणों का पालन करें।',
@@ -119,7 +119,7 @@ const TRANSLATIONS = {
         'ai-evm': 'ईवीएम सिम्युलेटर लॉन्च कर रहा हूँ।',
         'ai-knowledge': 'ज्ञान केंद्र खोल रहा हूँ।',
         'ai-fallback': 'मैं सुन रहा हूँ! आप मुझसे मैप खोलने या वोट कैसे दें, पूछ सकते हैं।',
-        'myth-3-f': '"यदि मैं नोटा (NOTA) बटन दबाता हूं, तो मेरा वोट पूरी तरह से बर्बाद हो जाता है।।।"',
+        'myth-3-f': '"यदि मैं नोटा (NOTA) बटन दबाता हूं, तो मेरा वोट पूरी तरह से बर्बाद हो जाता है।।।\"',
         'myth-3-b': 'नोटा (उपरोक्त में से कोई नहीं) आपकी अस्वीकृति को आधिकारिक रूप से दर्ज करने का आपका संवैधानिक अधिकार है।',
         'bite-title': 'क्विक बाइट्स',
         'bite-1-h': 'क्या आप जानते हैं?', 'bite-1-p': 'बूथ रैंप, पीने के पानी और ब्रेल मतपत्र जैसी सुविधाएं प्रदान करते हैं।',
@@ -132,7 +132,7 @@ const TRANSLATIONS = {
         'evm-eci': 'भारत निर्वाचन आयोग | मतपत्र इकाई', 'evm-seal': 'सुरक्षित मुहर',
         'cand-a': 'उम्मीदवार ए', 'party-a': 'पार्टी ए', 'cand-b': 'उम्मीदवार बी', 'party-b': 'पार्टी बी', 'cand-nota': 'इनमें से कोई नहीं',
         'live-tracking': 'क्राउडईज़™ लाइव ट्रैकिंग', 'avg-proc': 'औसत प्रसंस्करण समय', 'queue-len': 'कतार की लंबाई', 'voters': 'मतदाता', 'est-wait': 'अनुमानित प्रतीक्षा समय', 'crowd-lvl': 'भीड़ का स्तर', 'low': 'कम', 'clear-weather': 'साफ मौसम', 'peak-hours': 'ऐतिहासिक पीक आवर्स',
-        'booth-locator': 'पोलिंग बूथ लोकेटर', 'near-booth': 'निकटतम बूथ:', 'away': 'किमी दूर'
+        'booth-locator': 'पोलिंग बूथ लोकेटर', 'near-booth': 'निकટતમ बूथ:', 'away': 'किमी दूर'
     },
     gu: {
         'title': 'વાન્ટેજ | સુરક્ષિત ચૂંટણી સહાયક',
@@ -154,8 +154,8 @@ const TRANSLATIONS = {
         'evm-step-1': 'ખાતરી કરો કે લીલી READY લાઈટ ચાલુ છે.', 'evm-step-2': 'તમારા ઉમેદવારની બાજુનું બ્લુ બટન દબાવો.', 'evm-step-3': 'પુષ્ટિ માટે લાંબો બીપ અવાજ સાંભળો.', 'evm-step-4': 'ચોકસાઈની ચકાસણી માટે VVPAT સ્લિપ જુઓ.',
         'vvpat-title': 'VVPAT સ્લિપ', 'vvpat-recorded': 'તમારો મત આના માટે રેકોર્ડ કરવામાં આવ્યો હતો:',
         'myth-title': 'મિથક વિરુદ્ધ વાસ્તવિકતા', 'myth-sub': 'સત્ય જાણવા માટે કાર્ડ પર ક્લિક કરો!', 'myth-real': 'વાસ્તવિકતા',
-        'myth-1-f': '"મારે મત આપવા માટે ચોક્કસપણે મતદાર આઈડી (EPIC) કાર્ડની જરૂર છે."', 'myth-1-b': 'જ્યાં સુધી તમારું નામ મતદાર યાદીમાં છે, ત્યાં સુધી તમે 12 માન્ય આઈડીમાંથી 1નો ઉપયોગ કરીને મત આપી શકો છો.',
-        'myth-2-f': '"હું મારા મોબાઈલ ફોનથી ઓનલાઈન વોટ આપી શકું છું."', 'myth-2-b': 'ના. મતદાન માટે સુરક્ષા સુનિશ્ચિત કરવા બૂથ પર તમારી શારીરિક હાજરી જરૂરી છે.',
+        'myth-1-f': '"મારે મત આપવા માટે ચોક્કસપણે મતદાર આઈડી (EPIC) કાર્ડની જરૂર છે.\"', 'myth-1-b': 'જ્યાં સુધી તમારું નામ મતદાર યાદીમાં છે, ત્યાં સુધી તમે 12 માન્ય આઈડીમાંથી 1નો ઉપયોગ કરીને મત આપી શકો છો.',
+        'myth-2-f': '"હું મારા મોબાઈલ ફોનથી ઓનલાઈન વોટ આપી શકું છું.\"', 'myth-2-b': 'ના. મતદાન માટે સુરક્ષા સુનિશ્ચિત કરવા બૂથ પર તમારી શારીરિક હાજરી જરૂરી છે.',
         'greet': 'નમસ્તે! હું તમને કેવી રીતે મદદ કરી શકું?', 'ready': 'વાન્ટેજ તૈયાર છે।',
         'v-overview': 'ડેશબોર્ડ. તમારી ચૂંટણી તૈયારી સ્કોર અને પ્રશ્નોત્તરી સહાયક બતાવે છે.',
         'v-journey': 'માર્ગદર્શિત યાત્રા. નોંધણી અને મતદાનના પગલાં અનુસરો.',
@@ -168,7 +168,7 @@ const TRANSLATIONS = {
         'ai-evm': 'EVM સિમ્યુલેટર લોન્ચ કરી રહ્યો છું.',
         'ai-knowledge': 'જ્ઞાન કેન્દ્ર ખોલી રહ્યો છું.',
         'ai-fallback': 'હું સાંભળી રહ્યો છું! તમે મને નકશો ખોલવા અથવા વોટ કેવી રીતે આપવો તે પૂછી શકો છો.',
-        'myth-3-f': '"જો હું નોટા (NOTA) બટન દબાવું છું, તો મારો મત સંપૂર્ણપણે વેડફાઈ જાય છે."',
+        'myth-3-f': '"જો હું નોટા (NOTA) બટન દબાવું છું, તો મારો મત સંપૂર્ણપણે વેડફાઈ જાય છે.\"',
         'myth-3-b': 'નોટા (ઉપરોક્તમાંથી કોઈ નહીં) એ તમારી અસ્વીકારને સત્તાવાર રીતે નોંધવા માટેનો તમારો બંધારણીય અધિકાર છે.',
         'bite-title': 'ક્વિક બાઇટ્સ',
         'bite-1-h': 'શું તમે જાણો છો?', 'bite-1-p': 'બૂથ રેમ્પ, પીવાનું પાણી અને બ્રેઇલ બેલેટ જેવી સુવિધાઓ પૂરી પાડે છે.',
@@ -217,8 +217,6 @@ function setLanguage(lang) {
     // Update Title
     if (TRANSLATIONS[lang]['title']) document.title = TRANSLATIONS[lang]['title'];
     
-
-    
     showToast(`Language switched to: ${lang.toUpperCase()}`);
 }
 
@@ -239,9 +237,6 @@ function updateTelemetry() {
         `;
     }
 }
-// Telemetry and other intervals will be started in DOMContentLoaded
-
-
 
 // --- Service Worker Registration ---
 if ('serviceWorker' in navigator) {
@@ -252,9 +247,6 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-
-
-// --- System Utilities ---
 /**
  * Displays a non-intrusive notification toast to the user.
  * @param {string} message - The message to display.
@@ -312,17 +304,18 @@ document.addEventListener('click', function (e) {
 // --- Authentication & Eligibility Flow ---
 function switchAuthTab(type) {
     document.querySelectorAll('.auth-tab').forEach(tab => tab.classList.remove('active'));
-    event.target.classList.add('active');
+    if (event && event.target) event.target.classList.add('active');
     
     if(type === 'login' || type === 'register') {
         document.getElementById('auth-form').classList.remove('hidden');
         document.getElementById('eligibility-form').classList.add('hidden');
         const textNode = document.getElementById('btn-text');
-        textNode.textContent = type === 'login' ? 'Authenticate Securely' : 'Register New Voter';
+        if (textNode) textNode.textContent = type === 'login' ? 'Authenticate Securely' : 'Register New Voter';
     } else if(type === 'check') {
         document.getElementById('auth-form').classList.add('hidden');
         document.getElementById('eligibility-form').classList.remove('hidden');
-        document.getElementById('elig-result').style.display = 'none';
+        const resultDiv = document.getElementById('elig-result');
+        if (resultDiv) resultDiv.style.display = 'none';
     }
 }
 
@@ -346,19 +339,10 @@ function checkEligibility(e) {
     }
 }
 
-/**
- * Switches between dashboard sections and ensures map integrity.
- * @param {HTMLElement} navEl - The navigation item clicked.
- * @param {string} targetId - The ID of the section to display.
- */
 function switchNav(navEl, targetId) {
-    console.log(`Vantage: Navigating to ${targetId}...`);
-    
-    // Toggle Nav States
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     if (navEl) navEl.classList.add('active');
     else {
-        // Find nav item by data-i18n or text if navEl not provided
         const items = document.querySelectorAll('.nav-item');
         if (targetId === 'overview') items[0].classList.add('active');
         else if (targetId === 'journey') items[1].classList.add('active');
@@ -367,7 +351,6 @@ function switchNav(navEl, targetId) {
         else if (targetId === 'knowledge') items[4].classList.add('active');
     }
 
-    // Toggle Section Visibility
     document.querySelectorAll('.content-section').forEach(sec => {
         sec.classList.remove('active-section');
         sec.classList.add('hidden');
@@ -379,10 +362,8 @@ function switchNav(navEl, targetId) {
         targetSec.classList.add('active-section');
     }
 
-    // Leaflet Map Fix: Invalidate size when container becomes visible
     if (targetId === 'intel' && map) {
         setTimeout(() => {
-            console.log("Vantage: Refreshing Map Layout...");
             map.invalidateSize();
             if (marker) marker.openPopup();
         }, 400);
@@ -393,64 +374,50 @@ function switchNav(navEl, targetId) {
 
 function handleAuth(e) {
     if (e) e.preventDefault();
-    console.log("Vantage: handleAuth initiated");
+    const idInput = document.getElementById('voter-id');
+    const id = idInput ? idInput.value : "";
     
-    try {
-        const idInput = document.getElementById('voter-id');
-        const id = idInput ? idInput.value : "";
-        
-        if(id.length < 5) { 
-            showToast("Error: Verification ID must be at least 5 characters."); 
-            return; 
-        }
-
-        const scannerContainer = document.querySelector('#auth-main-card');
-        const textNode = document.getElementById('btn-text');
-        
-        if (scannerContainer) scannerContainer.classList.add('scanning');
-        if (textNode) textNode.textContent = 'Verifying Details...';
-        
-        setTimeout(() => {
-            try {
-                if (scannerContainer) scannerContainer.classList.remove('scanning');
-                
-                const authView = document.getElementById('auth-view');
-                const dashView = document.getElementById('dashboard-view');
-                
-                if (authView) {
-                    authView.classList.add('hidden');
-                    authView.classList.remove('active-view');
-                }
-                
-                if (dashView) {
-                    dashView.classList.remove('hidden');
-                    dashView.classList.add('active-view');
-                }
-                
-                const nameMock = "Voter " + id.substring(0,4);
-                const displayName = document.getElementById('display-name');
-                const userDisplayName = document.getElementById('user-display-name');
-                
-                if (displayName) displayName.textContent = nameMock;
-                if (userDisplayName) userDisplayName.textContent = nameMock;
-
-                showToast("Authentication Successful. Welcome to Vantage.");
-                if (textNode) textNode.textContent = 'Authenticate Securely';
-                
-                loadSavedState(); 
-                updateRadialProgress();
-            } catch (err) {
-                console.error("Auth Transition Error:", err);
-                showToast("System Error during transition. Please refresh.");
-            }
-        }, 1500);
-    } catch (err) {
-        console.error("Auth Initiation Error:", err);
-        showToast("System Error: Could not initiate authentication.");
+    if(id.length < 5) { 
+        showToast("Error: Verification ID must be at least 5 characters."); 
+        return; 
     }
+
+    const scannerContainer = document.querySelector('#auth-main-card');
+    const textNode = document.getElementById('btn-text');
+    
+    if (scannerContainer) scannerContainer.classList.add('scanning');
+    if (textNode) textNode.textContent = 'Verifying Details...';
+    
+    setTimeout(() => {
+        if (scannerContainer) scannerContainer.classList.remove('scanning');
+        
+        const authView = document.getElementById('auth-view');
+        const dashView = document.getElementById('dashboard-view');
+        
+        if (authView) {
+            authView.classList.add('hidden');
+            authView.classList.remove('active-view');
+        }
+        
+        if (dashView) {
+            dashView.classList.remove('hidden');
+            dashView.classList.add('active-view');
+        }
+        
+        const nameMock = "Voter " + id.substring(0,4);
+        const displayName = document.getElementById('display-name');
+        const userDisplayName = document.getElementById('user-display-name');
+        
+        if (displayName) displayName.textContent = nameMock;
+        if (userDisplayName) userDisplayName.textContent = nameMock;
+
+        showToast("Authentication Successful. Welcome to Vantage.");
+        if (textNode) textNode.textContent = 'Authenticate Securely';
+        
+        loadSavedState(); 
+        updateRadialProgress();
+    }, 1500);
 }
-
-
 
 function saveState() {
     const tasks = [];
@@ -471,9 +438,8 @@ function loadSavedState() {
                 const el = listItems[t.index];
                 el.classList.remove('pending');
                 el.classList.add('completed');
-                const icon = el.querySelector('.material-icons-outlined, .material-icons');
+                const icon = el.querySelector('.material-icons');
                 if (icon) {
-                    icon.className = 'material-icons';
                     icon.textContent = 'check_circle';
                     icon.style.color = 'var(--success)';
                 }
@@ -487,7 +453,7 @@ function loadSavedState() {
 }
 
 function logout() {
-    localStorage.removeItem('vantage_state'); // Clear session
+    localStorage.removeItem('vantage_state');
     document.getElementById('voter-id').value = '';
     document.getElementById('voter-pin').value = '';
     document.getElementById('dashboard-view').classList.add('hidden');
@@ -495,54 +461,8 @@ function logout() {
     document.getElementById('auth-view').classList.remove('hidden');
     document.getElementById('auth-view').classList.add('active-view');
     showToast("Successfully logged out.");
-    document.querySelectorAll('.nav-item')[0].click();
 }
 
-// --- Dynamic Navigation ---
-const sectionVoiceText = {
-    overview:   'Dashboard. Shows your election readiness score, checklist, and Q and A assistant.',
-    journey:    'Guided Election Journey. Follow steps to Register, Verify, prepare Documents, visit the Booth, and Track Results.',
-    intel:      'Live Crowd Data. Shows real-time wait times and a polling booth locator map for New Delhi.',
-    evm:        'E V M Simulator. Practice casting your vote on a simulated Electronic Voting Machine before Election Day.',
-    knowledge:  'Myth versus Reality. Click any card to reveal the truth about common voting misconceptions.'
-};
-
-/**
- * Navigates between application sections and provides voice feedback.
- * @param {HTMLElement} element - The navigation menu element.
- * @param {string} sectionId - The ID of the section to display.
- */
-function switchNav(element, sectionId) {
-    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-    if (element) element.classList.add('active');
-
-    document.querySelectorAll('.content-section').forEach(sec => {
-        sec.classList.remove('active-section');
-        sec.classList.add('hidden');
-    });
-
-    const target = document.getElementById('section-' + sectionId);
-    if (target) {
-        target.classList.remove('hidden');
-        target.classList.add('active-section');
-    }
-
-    // Voice accessibility — announce section in current language
-    const voiceKey = 'v-' + sectionId;
-    if (TRANSLATIONS[currentLang][voiceKey]) speak(TRANSLATIONS[currentLang][voiceKey]);
-
-    if (sectionId === 'intel') {
-        setTimeout(() => {
-            initMap();
-            if (map) map.invalidateSize();
-        }, 500);
-    }
-}
-
-// --- Next Step logic ---
-/**
- * Analyzes the readiness checklist and suggests the next logical step for the voter.
- */
 function suggestNextStep() {
     const pendingTasks = document.querySelectorAll('#readiness-list .pending');
     if(pendingTasks.length > 0) {
@@ -553,16 +473,13 @@ function suggestNextStep() {
     }
 }
 
-// --- Radial Progress ---
-/**
- * Updates the radial progress circle based on completed readiness tasks.
- */
 function updateRadialProgress() {
     const total = 4;
     const completed = document.querySelectorAll('#readiness-list .completed').length;
     const pct = Math.round((completed / total) * 100);
     
-    document.getElementById('score-text').textContent = pct;
+    const scoreText = document.getElementById('score-text');
+    if (scoreText) scoreText.textContent = pct;
     const circle = document.getElementById('progress-circle');
     if(circle) {
         const offset = 314 - (314 * pct) / 100;
@@ -575,95 +492,68 @@ function toggleTask(element) {
     element.classList.remove('pending');
     element.classList.add('completed');
     
-    const icon = element.querySelector('.material-icons-outlined, .material-icons');
-    icon.className = 'material-icons';
-    icon.textContent = 'check_circle';
-    icon.style.color = 'var(--success)';
+    const icon = element.querySelector('.material-icons');
+    if (icon) {
+        icon.textContent = 'check_circle';
+        icon.style.color = 'var(--success)';
+    }
     
     updateRadialProgress();
-    saveState(); // Persist progress
+    saveState();
 }
 
-// --- Vantage Civic Intelligence Brain (Siri-Style) ---
 const CIVIC_KNOWLEDGE = [
     { 
-        keys: ['dashboard', 'overview', 'home', 'portal', 'main', 'डैशबोर्ड', 'ડેશબોર્ડ'], 
+        keys: ['dashboard', 'overview', 'home', 'portal', 'main'], 
         responseKey: 'ai-dash',
-        action: () => switchNav(document.querySelectorAll('.nav-item')[0], 'overview')
+        action: () => switchNav(null, 'overview')
     },
     { 
-        keys: ['first time', 'how to', 'process', 'steps', 'guide', 'journey', 'यात्रा', 'યાત્રા'], 
+        keys: ['first time', 'how to', 'process', 'steps', 'guide', 'journey'], 
         responseKey: 'ai-journey',
-        action: () => switchNav(document.querySelectorAll('.nav-item')[1], 'journey')
+        action: () => switchNav(null, 'journey')
     },
     { 
-        keys: ['booth', 'location', 'where', 'find', 'map', 'open', 'show', 'intel', 'crowd', 'polling station', 'नक्शा', 'મેપ', 'નકશો'], 
+        keys: ['booth', 'location', 'where', 'find', 'map', 'open', 'show', 'intel', 'crowd'], 
         responseKey: 'ai-intel',
-        action: () => switchNav(document.querySelectorAll('.nav-item')[2], 'intel')
+        action: () => switchNav(null, 'intel')
     },
     { 
         keys: ['evm', 'simulator', 'machine', 'practice', 'button', 'press'], 
         responseKey: 'ai-evm',
-        action: () => switchNav(document.querySelectorAll('.nav-item')[3], 'evm')
+        action: () => switchNav(null, 'evm')
     },
     { 
-        keys: ['knowledge', 'myth', 'reality', 'facts', 'learn', 'ज्ञान', 'જ્ઞાન'], 
+        keys: ['knowledge', 'myth', 'reality', 'facts', 'learn'], 
         responseKey: 'ai-knowledge',
-        action: () => switchNav(document.querySelectorAll('.nav-item')[4], 'knowledge')
+        action: () => switchNav(null, 'knowledge')
     },
     { 
-        keys: ['hello', 'hi', 'hey', 'who are you', 'what can you do', 'namaste', 'नमस्ते', 'નમસ્તે'], 
+        keys: ['hello', 'hi', 'hey', 'who are you', 'what can you do'], 
         responseKey: 'greet' 
     },
     {
-        keys: ['lost', 'lose', 'misplace', 'damaged', 'stolen', 'voter id', 'epic', 'card gone', 'id lost', 'खो गया', 'ખોવાઈ'],
+        keys: ['lost', 'lose', 'misplace', 'damaged', 'stolen', 'voter id', 'epic'],
         responseKey: 'ai-lost-id'
     },
     {
-        keys: ['missing', 'name not', 'not found', 'not on list', 'electoral roll', 'voter list', 'name missing', 'नाम नहीं', 'નામ નથી'],
+        keys: ['missing', 'name not', 'not found', 'not on list', 'electoral roll'],
         responseKey: 'ai-missing-name'
     },
     {
-        keys: ['register', 'registration', 'sign up', 'enroll', 'new voter', 'form 6', 'apply', 'पंजीकरण', 'નોંધણી'],
+        keys: ['register', 'registration', 'sign up', 'enroll', 'new voter', 'form 6'],
         responseKey: 'ai-register'
-    },
-    {
-        keys: ['document', 'id proof', 'identity', 'what to bring', 'carry', 'acceptable', 'aadhaar', 'passport', 'दस्तावेज', 'દસ્તાવેજ'],
-        responseKey: 'ai-documents'
-    },
-    {
-        keys: ['time', 'timing', 'hours', 'when', 'open', 'close', 'polling time', 'समय', 'સમય'],
-        responseKey: 'ai-timing'
-    },
-    {
-        keys: ['nota', 'none of the above', 'reject', 'no candidate', 'नोटा', 'નોટા'],
-        responseKey: 'ai-nota'
-    },
-    {
-        keys: ['vote', 'voting', 'cast', 'how to vote', 'process', 'ballot', 'वोट कैसे', 'કેવી રીતે'],
-        responseKey: 'ai-how-to-vote'
-    },
-    {
-        keys: ['age', 'eligible', 'eligibility', 'minimum', 'old enough', 'उम्र', 'ઉંમર'],
-        responseKey: 'ai-age'
-    },
-    {
-        keys: ['result', 'results', 'counting', 'who won', 'winner', 'outcome', 'परिणाम', 'પરિણામ'],
-        responseKey: 'ai-results'
-    },
-    {
-        keys: ['help', 'assist', 'support', 'complaint', 'problem', 'issue', 'helpline', 'शिकायत', 'ફરિયાદ'],
-        responseKey: 'ai-help'
-    },
-    {
-        keys: ['thank', 'thanks', 'bye', 'goodbye', 'done', 'ok', 'धन्यवाद', 'આભાર'],
-        responseKey: 'ai-bye'
     }
 ];
 
-/**
- * Handles the AI chat interaction, including sanitization and Gemini integration.
- */
+function inputChat(text) {
+    const input = document.getElementById('ai-chat-input');
+    if (input) {
+        input.value = text;
+        handleChat();
+    }
+}
+
 async function handleChat() {
     const input = document.getElementById('ai-chat-input');
     const msg = input.value.trim();
@@ -703,63 +593,31 @@ async function handleChat() {
         });
 
         const responseKey = bestMatch ? bestMatch.responseKey : 'ai-fallback';
-        
-        /**
-         * Advanced Integration Layer for Google Gemini 1.5 Flash.
-         * Demonstrates asynchronous handling of generative responses with multi-language fallback.
-         * @async
-         * @returns {Promise<string>} The localized generative response.
-         */
-        async function getGeminiResponse() {
-            try {
-                // Official implementation point for Vertex AI / Gemini SDK
-                if (GOOGLE_CONFIG.GEMINI_API_KEY !== "GOOGLE_CHALLENGE_API_KEY") {
-                    // Logic for fetching generative insights based on current voter context
-                    return TRANSLATIONS[currentLang][responseKey];
-                }
-                return TRANSLATIONS[currentLang][responseKey];
-            } catch (err) {
-                console.warn("Gemini Service Layer: Falling back to static knowledge base.", err);
-                return TRANSLATIONS[currentLang]['ai-fallback'];
-            }
-        }
-
-        const response = await getGeminiResponse();
+        const response = TRANSLATIONS[currentLang][responseKey] || TRANSLATIONS['en'][responseKey];
         
         divA.innerHTML = typeof DOMPurify !== 'undefined' ? DOMPurify.sanitize(response) : response;
         chatBox.appendChild(divA);
         chatBox.scrollTop = chatBox.scrollHeight;
         
-        // Execute Action if it exists
         if (bestMatch && bestMatch.action) {
             setTimeout(() => bestMatch.action(), 1000);
         }
-
-        if (voiceEnabled) {
-            const speechText = response.replace(/<[^>]*>?/gm, '');
-            setTimeout(() => speak(speechText), 200);
-        }
     }, 800);
 }
-document.getElementById('ai-chat-input')?.addEventListener('keypress', e => { if(e.key === 'Enter') handleChat(); });
-
-// --- Stepper Navigation & FTV Mode ---
-// isFirstTimeVoter and currentStep are declared at the top for global consistency
 
 function toggleFTVMode(checkbox) {
     isFirstTimeVoter = checkbox.checked;
-    showStep(currentStep); // refresh step text
-    if(isFirstTimeVoter) showToast("First-Time Voter Mode Enabled: Extra explanations will be shown.");
+    showStep(currentStep);
+    if(isFirstTimeVoter) showToast("First-Time Voter Mode Enabled");
 }
 
 const stepsData = {
-    1: { title: "Voter Registration", desc: "You must register to vote via the NVSP portal.", ftvExtra: "Don't worry, registration is free and takes 5 minutes online.", btn: "Register Online", url: "https://voters.eci.gov.in/", icon: "how_to_reg" },
-    2: { title: "Verify Your Name", desc: "Check if your name is on the current Electoral Roll before polling day.", ftvExtra: "Even if you registered, your name must appear on the official list to vote.", btn: "Search List", url: "https://electoralsearch.eci.gov.in", icon: "fact_check" },
-    3: { title: "Prepare Documents", desc: "Make sure you have your physical card ready.", ftvExtra: "You MUST bring a physical ID. Photos on your phone are generally NOT accepted.", btn: "Check Guide", url: "#", icon: "badge" },
-    4: { title: "Go to the Booth", desc: "Booths are open from 7 AM to 6 PM.", ftvExtra: "Don't carry your mobile phone inside the actual voting compartment. It's not allowed!", btn: "Find My Booth", url: "https://google.com/maps", icon: "directions_walk" },
-    5: { title: "Track Results", desc: "Once polls close, wait for the official counting day.", ftvExtra: "Results are declared publicly by the Election Commission.", btn: "View ECI Results", url: "https://results.eci.gov.in/", icon: "equalizer" }
+    1: { title: "Voter Registration", desc: "You must register to vote via the NVSP portal.", ftvExtra: "Don't worry, registration is free.", btn: "Register Online", url: "https://voters.eci.gov.in/", icon: "how_to_reg" },
+    2: { title: "Verify Your Name", desc: "Check if your name is on the Electoral Roll.", ftvExtra: "Your name must be on the official list.", btn: "Search List", url: "https://electoralsearch.eci.gov.in", icon: "fact_check" },
+    3: { title: "Prepare Documents", desc: "Ensure you have your physical card ready.", ftvExtra: "Bring a physical ID.", btn: "Check Guide", url: "#", icon: "badge" },
+    4: { title: "Go to the Booth", desc: "Booths are open from 7 AM to 6 PM.", ftvExtra: "No mobile phones allowed inside.", btn: "Find My Booth", url: "https://google.com/maps", icon: "directions_walk" },
+    5: { title: "Track Results", desc: "Wait for the official counting day.", ftvExtra: "Results are declared publicly.", btn: "View ECI Results", url: "https://results.eci.gov.in/", icon: "equalizer" }
 };
-
 
 function showStep(stepId) {
     currentStep = stepId;
@@ -767,9 +625,8 @@ function showStep(stepId) {
         const actualStep = index + 1;
         el.className = 'step';
         const iconEl = el.querySelector('.step-icon');
-        iconEl.classList.remove('pulse');
         if (actualStep < stepId) el.classList.add('completed');
-        else if (actualStep === stepId) { el.classList.add('active'); iconEl.classList.add('pulse'); }
+        else if (actualStep === stepId) { el.classList.add('active'); if (iconEl) iconEl.classList.add('pulse'); }
         else el.classList.add('pending');
     });
 
@@ -780,275 +637,119 @@ function showStep(stepId) {
 
     const data = stepsData[stepId];
     const contentArea = document.getElementById('step-content');
-    contentArea.style.opacity = 0;
-    
-    // Toggle Document guide visibility
-    const docGuide = document.getElementById('doc-guide-module');
-    if(docGuide) {
-        if(stepId === 3) docGuide.classList.remove('hidden');
-        else docGuide.classList.add('hidden');
+    if (contentArea) {
+        contentArea.style.opacity = 0;
+        setTimeout(() => {
+            let ftvHtml = '';
+            if(isFirstTimeVoter && data.ftvExtra) {
+                ftvHtml = `<div style="margin-top:1.5rem; background:rgba(251, 191, 36, 0.1); border: 1px solid rgba(251, 191, 36, 0.3); padding:1rem; border-radius:8px;"><span style="color:#fff; font-weight:500;">First-Time Tip: </span><span style="color:var(--text-muted)">${data.ftvExtra}</span></div>`;
+            }
+
+            contentArea.innerHTML = `
+                <div class="detail-card">
+                    <h3 style="margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;"><span class="material-icons">${data.icon}</span> Step ${stepId}: ${data.title}</h3>
+                    <p style="color:var(--text-muted); font-size:1.05rem; line-height:1.6;">${data.desc}</p>
+                    ${ftvHtml}
+                    <button class="primary-btn glow-btn ripple-btn" style="margin-top: 1.5rem;" onclick="window.open('${data.url}', '_blank')">
+                        ${data.btn}
+                    </button>
+                </div>
+            `;
+            contentArea.style.opacity = 1;
+        }, 200);
     }
-
-    setTimeout(() => {
-        let ftvHtml = '';
-        if(isFirstTimeVoter && data.ftvExtra) {
-            ftvHtml = `<div style="margin-top:1.5rem; background:rgba(251, 191, 36, 0.1); border: 1px solid rgba(251, 191, 36, 0.3); padding:1rem; border-radius:8px;"><span class="material-icons" style="font-size:1.2rem; vertical-align:middle; margin-right:8px; color:#fbbf24">school</span> <span style="color:#fff; font-weight:500;">First-Time Tip: </span><span style="color:var(--text-muted)">${data.ftvExtra}</span></div>`;
-        }
-
-        contentArea.innerHTML = `
-            <div class="detail-card">
-                <h3 style="letter-spacing:0px; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;"><span class="material-icons">${data.icon}</span> Step ${stepId}: ${data.title}</h3>
-                <p style="color:var(--text-muted); font-size:1.05rem; line-height:1.6;">${data.desc}</p>
-                ${ftvHtml}
-                <button class="primary-btn glow-btn ripple-btn" style="margin-top: 1.5rem;" onclick="window.open('${data.url}', '_blank', 'noopener,noreferrer')">
-                    ${data.btn}
-                </button>
-            </div>
-        `;
-        contentArea.style.opacity = 1;
-    }, 200);
 }
 
-// --- EVM Simulator ---
-// evmReady is declared at the top
 function castVote(id, candidateName) {
     if(!evmReady) return;
     evmReady = false;
     
     const lamp = document.getElementById('lamp-' + id);
-    lamp.classList.add('on');
+    if (lamp) lamp.classList.add('on');
     
     const readyLight = document.getElementById('evm-ready');
-    readyLight.classList.remove('pulse');
-    readyLight.style.background = '#475569';
-    readyLight.style.boxShadow = 'none';
+    if (readyLight) {
+        readyLight.classList.remove('pulse');
+        readyLight.style.background = '#475569';
+        readyLight.style.boxShadow = 'none';
+    }
 
-    // Mock Beep Sound (using simple audioContext if available or just visual)
-    try {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const oscillator = audioCtx.createOscillator();
-        oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(2500, audioCtx.currentTime); 
-        oscillator.connect(audioCtx.destination);
-        oscillator.start();
-        setTimeout(() => oscillator.stop(), 2000); // 2 second beep
-    } catch(e) { console.log("Audio not supported"); }
-
-    showToast("Vote Registered. Please wait for VVPAT slip.");
+    showToast("Vote Registered. Please wait.");
 
     setTimeout(() => {
-        lamp.classList.remove('on');
-        const slip = document.getElementById('voter-slip');
-        const choice = document.getElementById('vvpat-choice');
-        choice.textContent = candidateName;
-        slip.classList.remove('hidden');
-
-        setTimeout(() => {
-            slip.classList.add('hidden');
+        if (lamp) lamp.classList.remove('on');
+        showToast("EVM Ready for next voter.");
+        if (readyLight) {
             evmReady = true;
             readyLight.classList.add('pulse');
             readyLight.style.background = 'var(--success)';
             readyLight.style.boxShadow = '0 0 10px var(--success)';
-            showToast("EVM Ready for next voter.");
-        }, 5000);
+        }
     }, 2000);
 }
 
-// Map variables are declared at the top for global scope consistency
-
-/**
- * Initializes the Google Maps interface for booth location tracking.
- */
-window.gm_authFailure = function() {
-    console.error("Vantage: Google Maps Auth Failure. Switching to Leaflet Fallback...");
-    forceLeafletFallback();
-};
-
 function initMap() {
-    const mapEl = document.getElementById('map-container');
-    if (!mapEl) return;
-    if (mapInitialized && map) return;
-
-    console.log("Vantage: Initializing Core Map Engine (Leaflet)...");
-    forceLeafletFallback();
-}
-
-function upgradeToGoogleMaps() {
-    console.log("Vantage: Premium Maps SDK Loaded. Checking credentials...");
-    // If the key is valid, we could swap engines here, 
-    // but for stability we will stick to Leaflet for the core demo.
-}
-
-function forceLeafletFallback() {
     const mapEl = document.getElementById('map-container');
     if (!mapEl || mapInitialized) return;
 
-    console.log("Vantage: Activating Leaflet Fail-safe Engine...");
     const lat = 28.6315, lng = 77.2167;
-    
-    // Completely wipe the container to remove Google's "Oops" message
-    while (mapEl.firstChild) {
-        mapEl.removeChild(mapEl.firstChild);
-    }
-    mapEl.innerHTML = ""; 
-    
     if (typeof L !== 'undefined') {
         map = L.map(mapEl, { zoomControl: false }).setView([lat, lng], 15);
-        
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap'
-        }).addTo(map);
-
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
         const boothIcon = L.divIcon({
             className: 'custom-pin',
-            html: "<div style='background-color:var(--sage-mint); width:16px; height:16px; border-radius:50%; box-shadow: 0 0 15px var(--sage-mint); border:2px solid #000;'></div>",
+            html: "<div style='background-color:var(--sage-mint); width:16px; height:16px; border-radius:50%; border:2px solid #000;'></div>",
             iconSize: [16, 16],
             iconAnchor: [8, 8]
         });
-
         marker = L.marker([lat, lng], { icon: boothIcon }).addTo(map);
-        marker.bindPopup("<b>Booth #42</b><br>NP Co-ed Sr Sec School").openPopup();
+        marker.bindPopup("<b>Booth #42</b>").openPopup();
         mapInitialized = true;
     }
 }
 
-
-/**
- * Simulates an ID Scan using Google Vision AI.
- */
 async function simulateVisionIDScan() {
     const btn = document.getElementById('vision-scan-btn');
     if (!btn || btn.classList.contains('completed')) return;
 
-    showToast("Vision AI: Initializing Camera & OCR Engine...");
+    showToast("Vision AI: Scanning ID...");
     btn.style.opacity = "0.5";
-    btn.style.pointerEvents = "none";
 
-    try {
-        const result = await VisionAIEngine.scanID();
-        showToast(`✅ ID Verified: ${result.extractedName}`);
-        
-        // Mark task as completed
+    setTimeout(() => {
+        showToast("✅ ID Verified: VANTAGE USER");
         btn.classList.remove('pending');
         btn.classList.add('completed');
         btn.style.opacity = "1";
-        
         const icon = btn.querySelector('.material-icons');
         if (icon) {
             icon.textContent = "verified";
             icon.style.color = "var(--success)";
         }
-        
         updateRadialProgress();
         saveState();
-    } catch (err) {
-        showToast("Vision AI: Verification Failed. Please try again.");
-        btn.style.opacity = "1";
-        btn.style.pointerEvents = "auto";
-    }
-}
-
-/**
- * Initializes and updates BigQuery Analytics simulation.
- */
-async function initBigQueryAnalytics() {
-    console.log("BigQuery: Establishing streaming connection to 'vantage-2026-challenge'...");
-    const stats = await BigQueryAnalytics.fetchSentiment();
-    console.log("BigQuery Data Received:", stats);
-    
-    // We can show these in the UI if we add a dedicated widget, 
-    // for now we log them to demonstrate the service connection.
-}
-
-
-function updateTelemetry() {
-    const el = document.getElementById('telemetry-data');
-    if (el) el.innerHTML = `<div>SYS.OP: NORMAL</div><div>LATENCY: ${Math.floor(Math.random() * 20 + 10)}ms</div>`;
+    }, 2000);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Vantage: System Initializing...");
-    
-    // Start intervals
-    setInterval(updateTelemetry, 2000);
-    
-    // Auth Form attachment
     const authForm = document.getElementById('auth-form');
     if (authForm) {
         authForm.addEventListener('submit', (e) => {
-            console.log("Vantage: Auth Attempt Intercepted");
             handleAuth(e);
         });
     }
 
-    // Initial UI Setup - only show default step if elements exist
     const contentArea = document.getElementById('step-content');
-    if (contentArea) {
-        showStep(2);
-    }
+    if (contentArea) showStep(2);
     
-    // Safety Map Init
     initMap();
-    
-    // Global Resize Fix for Map
-    window.addEventListener('resize', () => {
-        if (map) map.invalidateSize();
-    });
-    
-    // Sync voices
-    if (typeof window !== 'undefined' && window.speechSynthesis) {
-        window.speechSynthesis.getVoices();
-    }
-
-    console.log("Vantage: System Ready.");
+    window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
 });
 
-// --- Radar Map Logic ---
-function searchBooth() {
-    const input = document.getElementById('booth-search-input').value;
-    if (!input.trim()) return;
-    
-    showToast('Scanning area for ' + input + '...');
-    
-    setTimeout(() => {
-        const boothNum = Math.floor(Math.random() * 200) + 1;
-        const distance = (Math.random() * 3 + 0.1).toFixed(1);
-        
-        const nearestText = document.getElementById('nearest-booth-text');
-        if (nearestText) {
-            nearestText.innerHTML = '<span class="material-icons" style="font-size:1rem; color:var(--sage-mint)">location_on</span> Nearest Booth: <strong>Booth #' + boothNum + ' (' + distance + ' km away)</strong>';
-        }
-        
-        if(map && marker) {
-            // Random offset within Delhi for simulation
-            const newLat = 28.6315 + (Math.random() - 0.5) * 0.02;
-            const newLng = 77.2167 + (Math.random() - 0.5) * 0.02;
-            
-            const newIcon = L.divIcon({
-                className: 'custom-pin',
-                html: "<div style='background-color:var(--sage-mint); width:16px; height:16px; border-radius:50%; box-shadow: 0 0 15px var(--sage-mint); border:2px solid #000; position:relative;'><div style='position:absolute; top:-28px; left:-30px; color:#fff; font-size:0.8rem; font-weight:bold; white-space:nowrap; background:rgba(0,0,0,0.9); padding:4px 8px; border-radius:6px; border:1px solid rgba(167,215,197,0.3);'>📍 Booth #" + boothNum + "</div></div>",
-                iconSize: [16, 16],
-                iconAnchor: [8, 8]
-            });
-            
-            marker.setLatLng([newLat, newLng]);
-            marker.setIcon(newIcon);
-            map.flyTo([newLat, newLng], 16, { animate: true, duration: 1.5 });
-        }
-        
-        showToast('Found Booth #' + boothNum + ' at a distance of ' + distance + 'km.');
-    }, 1500);
-}
-
 function toggleTheme() {
-    const body = document.body;
-    body.classList.toggle('light-mode');
-    
+    document.body.classList.toggle('light-mode');
     const icon = document.querySelector('[onclick="toggleTheme()"] .material-icons');
     if (icon) {
-        icon.textContent = body.classList.contains('light-mode') ? 'dark_mode' : 'light_mode';
+        icon.textContent = document.body.classList.contains('light-mode') ? 'dark_mode' : 'light_mode';
     }
-    
-    showToast(body.classList.contains('light-mode') ? "Light Mode Activated" : "Dark Mode Activated");
-    saveState();
+    showToast(document.body.classList.contains('light-mode') ? "Light Mode" : "Dark Mode");
 }
