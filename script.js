@@ -252,8 +252,8 @@ function updateTelemetry() {
 // --- Service Worker Registration ---
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(err => {
-            // Silently fail or use custom monitoring
+        navigator.serviceWorker.register('./sw.js').catch(err => {
+            console.warn('Service Worker registration failed:', err);
         });
     });
 }
@@ -335,8 +335,15 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
 
     recognition.onerror = (event) => {
         console.error("Speech recognition error", event.error);
-        if (event.error === 'not-allowed') {
-            showToast("🎤 Microphone access denied. Please allow mic access.");
+        if (event.error === 'not-allowed' || event.error === 'permission-denied') {
+            voiceEnabled = false;
+            showToast("🎤 Microphone access denied. Please allow mic in your browser settings and try again.");
+            const btn = document.getElementById('voice-btn');
+            const icon = document.getElementById('voice-icon');
+            if (btn) btn.classList.remove('active');
+            if (icon) icon.textContent = 'mic_off';
+        } else if (event.error === 'network') {
+            showToast("🌐 Voice requires a network connection. Please check your connection.");
         } else if (event.error !== 'no-speech' && event.error !== 'aborted') {
             showToast("Voice error: " + event.error);
         }
