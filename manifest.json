@@ -2,13 +2,13 @@
   "name": "VANTAGE",
   "short_name": "Vantage",
   "description": "VANTAGE 2026 | AI-Powered Election Assistant",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#0a0f18",
   "theme_color": "#A7D7C5",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "./favicon.svg",
       "sizes": "192x192 512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
