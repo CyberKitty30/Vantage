@@ -1,61 +1,42 @@
-# VANTAGE | Secure Election Assistant
-> Built for the **Google Challenge 2026** · Powered by **Google Gemini**
+VANTAGE — Secure Election Assistant
 
-An AI-powered, interactive civic assistant that guides Indian voters through the entire election process. VANTAGE establishes the "Limitless" benchmark for civic technology.
+Chosen Vertical
+CivicTech / Digital Governance
 
----
+VANTAGE operates at the intersection of technology and democracy, focusing on one critical gap: voter hesitation. Not because people don’t care — but because the process feels unclear, unfamiliar, or intimidating.
 
-## 🏆 Limitless Criteria Fulfillment
+Approach and Logic
+Instead of adding more information, VANTAGE focuses on removing friction.
 
-### 🎯 Problem Statement Alignment (25%)
-VANTAGE solves the core "Democratic Friction" problem: low turnout due to misinformation and logistical anxiety.
-- **Morality & Integrity**: Strictly non-partisan. Every data point is tagged with an **ECI SOURCE** badge. No editorializing or candidate mention.
-- **Booth Fear Reduction**: The interactive **EVM Simulator** removes technical anxiety for first-time or elderly voters.
-- **Queue Optimization**: **CrowdEase™** provides real-time transparency, solving the #1 reason for voter drop-out: long wait times.
+The approach is built on three principles:
 
-### 🌎 Limitless Accessibility (WCAG 2.1)
-- **Visual**: High Contrast Mode (0.00 contrast errors) + Screen Reader optimized ARIA landmarks.
-- **Auditory**: High-fidelity Voice Assistant with phonetic Indian language fallbacks.
-- **Cognitive**: First-Time Voter (FTV) mode with simplified, low-jargon explanations.
+Understand before you act Users shouldn’t walk into a voting booth with uncertainty. Every step is explained beforehand. Experience reduces fear A simulated environment builds confidence better than static instructions. Ask, don’t search Users can directly interact with the system and get precise answers instead of navigating complex sources.
 
-### 🛡️ Limitless Security (Hardened)
-- **Zero-Trust Scripting**: Strict CSP meta-headers + Subresource Integrity (SRI) hashes for every CDN asset.
-- **Privacy First**: LocalStorage persistence is encrypted/cleared on logout. No server-side tracking of user IDs.
+The logic is simple: Confidence → Clarity → Participation
 
-### ⚡ Limitless Efficiency
-- **Performance Budget**:
-  - TTI (Time to Interactive): **< 800ms** on 4G.
-  - Page Size: **< 120KB** (Gzipped).
-  - Cache: Stale-While-Revalidate PWA caching for 100% offline baseline.
-- **Architecture**: Zero-dependency Vanilla JS for maximum execution speed and zero security vulnerabilities.
+How the Solution Works
+VANTAGE functions as a guided, interactive layer on top of the voting journey:
 
----
+Step 1: Entry Users access the platform through a simple login (demo-based authentication).
 
-## 📍 Feature Matrix
+Step 2: Guided Dashboard Instead of overwhelming users, the interface highlights only what matters:
 
-| Feature | Limitless Value |
-|---|---|
-| 🌍 Deep i18n | 100% Immersion in Hindi & Gujarati |
-| 🔒 Secure Auth | CSRF-protected mock biometric verification |
-| 📊 CrowdEase™ | Real-time ECI-sourced wait analytics |
-| 🗳️ EVM Sim | Realistic 2-second beep & VVPAT verification |
-| 💬 Gemini Q&A | generative AI layer for exact civic triage |
-| 🔊 Voice Brain | Multi-lingual TTS navigation |
+What to do How to do it What to expect
 
----
+Step 3: EVM Simulation Users interact with a realistic voting simulation:
 
-## 🚀 Getting Started
+Press → Beep → Confirmation → VVPAT flow This transforms an unknown process into a familiar one.
 
-```bash
-npm start
-```
-**Access**: [http://localhost:5001](http://localhost:5001)
+Step 4: AI Assistance (Gemini) Users can ask real questions like:
 
-### 🧪 Test Credentials (for Evaluators)
-- **Voter ID**: `VANTAGE2026` (or any 5+ characters)
-- **PIN**: `1234` (any PIN)
+“What happens after I vote?” “Can I make mistakes?”
 
----
+And receive clear, contextual answers instantly.
 
-## License
-MIT | VANTAGE 2026 Team | Limitless Edition
+Step 5: Accessibility Layer
+
+Regional language support (Hindi, Gujarati) Voice guidance for non-text users First-Time Voter mode with simplified explanations
+
+Everything is designed to reduce hesitation at every step.
+
+Assumptions Made Users may feel unsure or anxious about the voting process Not all users are comfortable with formal or technical instructions Access to a basic smartphone or browser is available The system is purely assistive and does not replace official election infrastructure Authentication is simplified for demonstration purposes

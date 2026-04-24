@@ -47,35 +47,6 @@ class VisionAIEngine {
 }
 
 
-// --- Google Cloud Platform Integrations ---
-const GOOGLE_CONFIG = {
-    PROJECT_ID: "vantage-election-2026",
-    REGION: "asia-south1",
-    GEMINI_API_KEY: "GOOGLE_CHALLENGE_API_KEY",
-    VISION_AI_ENABLED: true,
-    BIGQUERY_DATASET: "election_intel_db"
-};
-
-const VisionAIEngine = {
-    scanID: async () => {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve({ extractedName: "Voter 42XX", confidence: 0.98, type: "EPIC_CARD" });
-            }, 1200);
-        });
-    }
-};
-
-const BigQueryAnalytics = {
-    fetchSentiment: async () => {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve({ positive: 84.7, reliability: 99.9, turnout: 72.4 });
-            }, 800);
-        });
-    }
-};
-
 const TRANSLATIONS = {
     en: {
         'title': 'VANTAGE | Secure Election Assistant',
@@ -224,7 +195,6 @@ let speechHeartbeat = null;
 let mapInitialized = false;
 let map;
 let marker;
-'use strict';
 let evmReady = true;
 
 /**
@@ -1248,6 +1218,11 @@ async function initBigQueryAnalytics() {
     // for now we log them to demonstrate the service connection.
 }
 
+
+function updateTelemetry() {
+    const el = document.getElementById('telemetry-data');
+    if (el) el.innerHTML = `<div>SYS.OP: NORMAL</div><div>LATENCY: ${Math.floor(Math.random() * 20 + 10)}ms</div>`;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Vantage: System Initializing...");
