@@ -1,598 +1,482 @@
 <!DOCTYPE html>
-<html lang="en" id="vantage-html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="VANTAGE 2026: AI-Powered Secure Election Assistant built for the Google Challenge. Implements Gemini, Vision AI, and BigQuery for scalable civic accessibility.">
-    <meta name="keywords" content="Google Challenge, Election Assistant, Gemini AI, Vision AI, BigQuery, Civic Tech, Smart Government">
-    <meta name="author" content="Vantage Team">
-    <title data-i18n="title">VANTAGE | Secure Election Assistant</title>
-    <link rel="stylesheet" href="styles.css?v=4.0.0">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#09090b">
+    <title>VANTAGE | Election Intelligence Core</title>
+    
+    <!-- Meta -->
+    <meta name="description" content="Premium Election Intelligence Dashboard powered by Google Cloud.">
+    <meta name="theme-color" content="#020617">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="manifest" href="manifest.json">
-    
-    <!-- Map Engines: Leaflet (Primary) & Dynamic Google Loader (Secondary) -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    
-    <!-- Security: DOMPurify for XSS Protection -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-    <!-- GCP Vision AI & BigQuery Simulation Styles -->
-    <style>
-        .gcp-badge {
-            font-size: 0.65rem;
-            font-weight: 700;
-            padding: 2px 6px;
-            border-radius: 4px;
-            background: rgba(66, 133, 244, 0.1);
-            color: #4285F4;
-            border: 1px solid rgba(66, 133, 244, 0.3);
-            text-transform: uppercase;
-        }
-    </style>
-    <script>
-        // Force clear old caches on major version update
-        if (localStorage.getItem('vantage_version') !== '4.0.0') {
-            if ('serviceWorker' in navigator) {
-                caches.keys().then(names => names.forEach(name => caches.delete(name)));
-            }
-            localStorage.setItem('vantage_version', '4.0.0');
-            location.reload();
-        }
-    </script>
-</head>
-<body>
-    <div aria-live="polite" class="sr-only" id="aria-announcer">Vantage Secure Platform Initializing...</div>
 
-    <div class="background-mesh">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-        <div class="noise-overlay"></div>
+    <!-- Styling -->
+    <link rel="stylesheet" href="styles.css?v=ELITE_10.0">
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VANTAGE2026"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VANTAGE2026');
+    </script>
+
+    <!-- Security -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+
+    <!-- Google reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></script>
+</head>
+<body class="initializing">
+    <div id="boot-noise"></div>
+    <div id="binary-stream"></div>
+    <div id="cursor-glow"></div>
+    <div id="toast-container" aria-live="polite" style="position: fixed; bottom: 2rem; right: 2rem; z-index: 999999; display: flex; flex-direction: column; gap: 0.75rem;"></div>
+    <!-- NEW: Tactical Data Connection Mesh -->
+    <svg id="connection-mesh" style="position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0.3;"></svg>
+    <!-- NEW: Global Integrity Sweep -->
+    <div id="integrity-sweep"></div>
+    <div class="aurora-header" id="aurora"></div>
+    <!-- Initialization Loader -->
+    <div id="init-loader">
+        <div class="loader-hex"></div>
+        <div id="diagnostic-terminal" style="margin-top: 1rem; font-family: monospace; font-size: 0.5rem; color: var(--secondary); height: 40px; overflow: hidden; width: 150px; text-align: left; background: rgba(0,0,0,0.3); padding: 5px; border-radius: 4px;"></div>
+        <p style="margin-top: 1rem; font-family: 'Outfit'; font-weight: 900; letter-spacing: 3px; color: var(--primary);">VANTAGE SECURE INIT</p>
+        <div id="boot-counter" style="margin-top: 0.5rem; font-family: monospace; font-size: 0.7rem; color: var(--text-dim);">DATA_LOAD: 0%</div>
     </div>
 
-    <div id="toast-container"></div>
-    <div id="telemetry-data" style="position:fixed; bottom:20px; right:20px; background:rgba(0,0,0,0.8); color:var(--sage-mint); font-family:monospace; font-size:0.65rem; padding:10px; border-radius:8px; border:1px solid var(--glass-border); z-index:9999; pointer-events:none; display:flex; flex-direction:column; gap:4px;"></div>
+    <!-- Diagnostic Overlay -->
+    <div id="diagnostic-overlay">
+        <div class="diag-terminal" id="diag-content">
+            [SYS_DIAG_INIT] Initializing VANTAGE Integrity Probe...
+        </div>
+    </div>
 
-    <div id="app-root">
+    <!-- Lockdown Overlay -->
+    <div id="lockdown-overlay">
+        <div class="glitch" style="font-size: 5rem; font-weight: 900;">SYSTEM LOCKED</div>
+        <div style="letter-spacing: 5px; margin-top: 1rem; color: #fff;">ENCRYPTION CASCADE ACTIVE</div>
+        <button id="unlock-trigger" style="margin-top: 2rem; padding: 1rem 2rem; background: transparent; border: 1px solid #fff; color: #fff; cursor: pointer; font-weight: 800;">RE-AUTHORIZE SYSTEM</button>
+    </div>
 
-        <!-- ============================================== -->
-        <!-- AUTHENTICATION & ELIGIBILITY VIEW -->
-        <!-- ============================================== -->
-        <div id="auth-view" class="view-panel active-view">
-            <div class="auth-container glass-panel tilt-card" id="auth-main-card">
-                <div class="auth-header">
-                    <div style="width:60px; height:60px; background:rgba(167,215,197,0.1); border:1px solid var(--sage-mint); border-radius:16px; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem; box-shadow: 0 0 30px rgba(167,215,197,0.2);">
-                        <span class="material-icons" style="color:var(--sage-mint); font-size:36px;">how_to_vote</span>
-                    </div>
-                    <h1 data-i18n="auth-h1" style="font-size:2.5rem; font-weight:900; letter-spacing:2px;">VANTAGE <span style="color:var(--sage-mint);">CORE</span></h1>
-                    <p data-i18n="auth-p" style="color:var(--text-muted); font-size:1.1rem; margin-top:0.5rem;">Your AI-Powered Election Assistant</p>
-                </div>
+    <!-- Auth Overlay -->
+    <div id="auth-overlay">
+        <div class="auth-panel">
+            <h1 class="glitch">VANTAGE<span>.</span></h1>
+            <p style="margin-bottom: 1.5rem; color: var(--text-dim); letter-spacing: 2px;">SECURE INTELLIGENCE ACCESS</p>
+            <div class="auth-input-group">
+                <input type="text" id="auth-id" class="auth-input" placeholder="Voter ID / EPIC Number" aria-label="Enter Voter ID or EPIC Number">
                 
-                <div class="auth-tabs">
-                    <button class="auth-tab active" onclick="switchAuthTab('login')" data-i18n="tab-login">Sign In</button>
-                    <button class="auth-tab" onclick="switchAuthTab('check')" data-i18n="tab-eligibility">Check Eligibility</button>
+                <div id="biometric-trigger" class="biometric-box" role="button" tabindex="0" aria-label="Initiate Biometric Scan">
+                    <div class="laser-line"></div>
+                    <span class="material-icons">fingerprint</span>
                 </div>
+                <p style="font-size: 0.6rem; color: var(--text-dim); margin-bottom: 1rem;">BIOMETRIC VERIFICATION REQUIRED</p>
 
-                <!-- LOGIN FORM -->
-                <form id="auth-form">
-                    <div class="input-group">
-                        <span class="material-icons input-icon">account_circle</span>
-                        <input type="text" id="voter-id" placeholder="Voter ID or Aadhaar Number" required autocomplete="off">
-                    </div>
-                    <div class="input-group">
-                        <span class="material-icons input-icon">lock</span>
-                        <input type="password" id="voter-pin" placeholder="Secure Verification PIN" required>
-                    </div>
-                    <button type="submit" class="primary-btn glow-btn ripple-btn" aria-label="Authenticate and access your secure dashboard">
-                        <span class="material-icons" style="margin-right:8px; font-size:20px;">fingerprint</span>
-                        <span id="btn-text">Authenticate Securely</span>
-                    </button>
-                </form>
+                <input type="password" id="auth-pin" class="auth-input" placeholder="Secure Pin" aria-label="Secure Pin">
+                <button type="button" id="auth-login" class="auth-btn">AUTHORIZE SYSTEM ACCESS</button>
+            </div>
+        </div>
+    </div>
 
-                <!-- ELIGIBILITY CHECKER FORM (Hidden by default) -->
-                <form id="eligibility-form" class="hidden">
-                    <div class="input-group">
-                        <span class="material-icons input-icon">event</span>
-                        <input type="number" id="elig-age" placeholder="Your Age" required min="1">
-                    </div>
-                    <div class="input-group">
-                        <span class="material-icons input-icon">flag</span>
-                        <select id="elig-citizen" required style="width: 100%; background: var(--card-bg); border: 1px solid var(--glass-border); color: var(--text-primary); padding: 1rem 1rem 1rem 3.5rem; border-radius: 12px; font-size: 1rem; outline: none; -webkit-appearance:none;">
-                            <option value="" disabled selected>Are you a citizen?</option>
-                            <option value="yes">Yes, I am a citizen</option>
-                            <option value="no">No, I am not</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="primary-btn ripple-btn" style="background:var(--accent-blue);" aria-label="Verify my voting eligibility status">
-                        <span class="material-icons">fact_check</span> Verify Status
-                    </button>
-                    <div id="elig-result" style="margin-top:1.5rem; font-weight:600; display:none; padding:1rem; border-radius:8px;"></div>
-                </form>
+    <!-- Main Dashboard -->
+    <div id="app-root">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon"><span class="material-icons">how_to_vote</span></div>
+                <div class="brand-name">VANTAGE.</div>
+            </div>
+            
+            <nav class="nav-menu" aria-label="Main Navigation">
+                <button type="button" class="nav-link active" data-view="dash"><span class="material-icons" aria-hidden="true">dashboard</span> DASHBOARD</button>
+                <button type="button" class="nav-link" data-view="journey"><span class="material-icons" aria-hidden="true">explore</span> GUIDED JOURNEY</button>
+                <button type="button" class="nav-link" data-view="map"><span class="material-icons" aria-hidden="true">my_location</span> LIVE INTEL (BOOTH)</button>
+                <button type="button" class="nav-link" data-view="evm"><span class="material-icons" aria-hidden="true">touch_app</span> EVM SIMULATOR</button>
+                <button type="button" class="nav-link" data-view="knowledge"><span class="material-icons" aria-hidden="true">school</span> KNOWLEDGE HUB</button>
+                <button type="button" class="nav-link" data-view="ai"><span class="material-icons" aria-hidden="true">auto_awesome</span> GEMINI INTEL</button>
+                <button type="button" id="lockdown-trigger" class="nav-link" style="color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); margin-top: 1rem;"><span class="material-icons" aria-hidden="true">lock_person</span> SYSTEM LOCK</button>
+            </nav>
 
-                <div class="auth-footer" style="flex-direction:column; gap:8px;">
-                    <div style="display:flex; align-items:center; gap:6px; color:var(--text-muted); font-size:0.85rem;"><svg viewBox="0 0 24 24" fill="currentColor" style="width:1.1rem; height:1.1rem; color:var(--sage-mint);"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.47 4.34-3.1 8.24-7 9.5V12H5V6.3l7-3.11v8.8z"/></svg> End-to-End Encrypted via ECI Standards</div>
-                    <div style="margin-top:4px; padding:8px 15px; background:rgba(167,215,197,0.08); border:1px solid rgba(167,215,197,0.2); border-radius:10px; font-size:0.85rem; color:var(--sage-mint); display:flex; align-items:center; gap:8px;">
-                        <svg viewBox="0 0 24 24" fill="currentColor" style="width:1.2rem; height:1.2rem;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        Non-Partisan · Verified data from ECI &amp; NVSP only
+            <div class="user-block">
+                <div class="user-card">
+                    <div class="user-avatar" id="avatar-char">V</div>
+                    <div>
+                        <div id="user-id-display" style="font-weight: 800; font-size: 0.9rem;">VOTER-1</div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div class="biometric-wave">
+                                <span></span><span style="animation-delay: 0.2s"></span><span style="animation-delay: 0.4s"></span>
+                            </div>
+                            <div style="display: flex; gap: 4px;">
+                                <span class="material-icons cloud-icon">cloud_queue</span>
+                                <span class="material-icons cloud-icon" style="animation-delay: 0.5s">storage</span>
+                                <span class="material-icons cloud-icon" style="animation-delay: 1s">functions</span>
+                            </div>
+                            <div style="font-size: 0.6rem; color: var(--secondary); font-weight: 800;">TRUST: 100%</div>
+                        </div>
                     </div>
-                    <div style="margin-top:10px; font-size:0.7rem; color:var(--text-muted); opacity:0.8; letter-spacing:0.3px;">
-                        <strong>Evaluator Note:</strong> Use any Voter ID (5+ chars) and PIN to enter demo mode.
+                </div>
+                <button type="button" id="logout-trigger" style="margin-top: 1rem; width: 100%; padding: 0.5rem; background: transparent; border: 1px solid var(--border); color: var(--text-dim); border-radius: 8px; cursor: pointer;">LOGOUT</button>
+            </div>
+
+            <!-- NEW: Holographic Session HUD -->
+            <div style="margin-top: 2rem; padding: 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 12px; font-family: monospace; font-size: 0.6rem;">
+                <div style="color: var(--primary); margin-bottom: 0.5rem; font-weight: 800;">SESSION_HUD_V2.1</div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                    <span>UPTIME:</span><span id="session-time">00:00</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>THROUGHPUT:</span>
+                    <div style="display: flex; align-items: flex-end; gap: 2px; height: 10px;">
+                        <div class="bar-pulse" style="width: 2px; height: 100%; background: var(--secondary);"></div>
+                        <div class="bar-pulse" style="width: 2px; height: 60%; background: var(--secondary);"></div>
+                        <div class="bar-pulse" style="width: 2px; height: 80%; background: var(--secondary);"></div>
+                    </div>
+                </div>
+                <!-- NEW: System Integrity Monitor -->
+                <div style="margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.5rem; margin-bottom: 0.25rem;">
+                        <span>SYS_INTEGRITY</span><span id="integrity-val">100%</span>
+                    </div>
+                    <div style="width: 100%; height: 2px; background: rgba(0,0,0,0.3); border-radius: 2px; overflow: hidden; margin-bottom: 0.5rem;">
+                        <div id="integrity-bar" style="width: 100%; height: 100%; background: var(--secondary); transition: width 0.5s;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.5rem;">
+                        <span>NEURAL_SYNC</span><span id="sync-val">98.2%</span>
+                    </div>
+                    <div id="lat-long-hud">
+                        <span>LAT: 28.6139° N</span><span>LONG: 77.2090° E</span>
+                    </div>
+                    <div style="font-size: 0.5rem; color: var(--secondary); margin-top: 0.5rem; font-weight: 800;">
+                        SESSION_UPTIME: <span id="session-uptime">00:00:00</span>
+                    </div>
+                    <div class="throughput-sparkline">
+                        <div class="spark-bar"></div><div class="spark-bar" style="animation-delay: 0.1s"></div><div class="spark-bar" style="animation-delay: 0.2s"></div><div class="spark-bar" style="animation-delay: 0.3s"></div><div class="spark-bar" style="animation-delay: 0.4s"></div>
                     </div>
                 </div>
             </div>
-        </div>
+        </aside>
 
-        <!-- ============================================== -->
-        <!-- DASHBOARD VIEW -->
-        <!-- ============================================== -->
-        <div id="dashboard-view" class="view-panel hidden">
-            <!-- Sidebar -->
-            <aside class="dashboard-sidebar glass-panel">
-                <div class="sidebar-brand" style="display:flex; align-items:center; gap:12px; padding:0.5rem; margin-bottom:2rem;">
-                    <div style="width:40px; height:40px; background:var(--sage-mint); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                        <span class="material-icons" style="color:var(--bg-dark); font-size:24px;">how_to_vote</span>
-                    </div>
-                    <h2 style="font-size:1.4rem; font-weight:800; letter-spacing:2px; color:var(--text-primary); margin:0;">VANTAGE<span style="color:var(--sage-mint);">.</span></h2>
-                </div>
-                <div class="sidebar-user" style="display:flex; flex-direction:column; align-items:center; gap:12px; padding:1.5rem 1rem; background:rgba(255,255,255,0.03); border-radius:16px; border:1px solid rgba(255,255,255,0.05); margin-bottom:1.5rem;">
-                    <div class="user-avatar" style="width:64px; height:64px; border-radius:50%; border:2px solid var(--sage-mint); padding:3px; background:rgba(0,0,0,0.2); position:relative;">
-                        <div style="width:100%; height:100%; border-radius:50%; background:linear-gradient(135deg, #3b82f6, var(--sage-mint)); display:flex; align-items:center; justify-content:center; overflow:hidden;">
-                            <span class="material-icons" style="font-size:40px; color:rgba(255,255,255,0.9);">person</span>
-                        </div>
-                        <div style="position:absolute; bottom:2px; right:2px; width:14px; height:14px; background:var(--success); border:2px solid var(--bg-dark); border-radius:50%;"></div>
-                    </div>
-                    <div style="text-align:center;">
-                        <p id="display-name" style="font-weight:700; color:var(--text-primary); font-size:1rem;">Citizen Voter</p>
-                        <p style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">ECI VERIFIED</p>
+        <main class="main-view">
+            <header class="top-nav">
+                <div class="search-input">
+                    <span class="material-icons">search</span>
+                    <input type="text" placeholder="Query Intelligence Database...">
+                    <div id="spectrogram" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);">
+                        <span></span><span style="animation-delay: 0.2s"></span><span style="animation-delay: 0.4s"></span>
                     </div>
                 </div>
-                <nav class="sidebar-nav">
-                    <a href="#" class="nav-item active ripple-btn" onclick="switchNav(this, 'overview')" aria-label="Go to Dashboard Overview"><span class="material-icons">dashboard</span> <span data-i18n="nav-dash">Dashboard</span></a>
-                    <a href="#" class="nav-item ripple-btn" onclick="switchNav(this, 'journey')" aria-label="Go to Guided Election Journey"><span class="material-icons">route</span> <span data-i18n="nav-journey">Guided Journey</span></a>
-                    <a href="#" class="nav-item ripple-btn" onclick="switchNav(this, 'intel')" aria-label="View Live Crowd and Booth Intel"><span class="material-icons">query_stats</span> <span data-i18n="nav-intel">Live Intel</span></a>
-                    <a href="#" class="nav-item ripple-btn" onclick="switchNav(this, 'evm')" aria-label="Open EVM Simulator"><span class="material-icons">touch_app</span> <span data-i18n="nav-evm">EVM Sim</span></a>
-                    <a href="#" class="nav-item ripple-btn" onclick="switchNav(this, 'knowledge')" aria-label="View Myth vs Reality Knowledge base"><span class="material-icons">school</span> <span data-i18n="nav-knowledge">Knowledge</span></a>
-                </nav>
-                <div class="sidebar-bottom">
-                    <button class="logout-btn" onclick="logout()" style="width:100%; border:1px solid rgba(255,255,255,0.1); border-radius:8px;"><span class="material-icons">logout</span> <span data-i18n="btn-logout">Log Out</span></button>
+                
+                <div id="live-clock" style="font-family: monospace; font-weight: 800; color: var(--primary); letter-spacing: 2px; background: rgba(0,0,0,0.3); padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid var(--border);">00:00:00</div>
+                
+                <div id="conn-meter" style="display: flex; align-items: center; gap: 0.35rem; background: rgba(0,0,0,0.2); padding: 0.4rem 0.8rem; border-radius: 20px; border: 1px solid var(--border);">
+                    <div class="conn-bar" style="width: 3px; height: 12px; background: var(--secondary);"></div>
+                    <div class="conn-bar" style="width: 3px; height: 8px; background: var(--secondary);"></div>
+                    <div class="conn-bar" style="width: 3px; height: 14px; background: var(--secondary);"></div>
+                    <span style="font-size: 0.6rem; font-weight: 800; color: var(--text-dim);">GCP: 24ms</span>
                 </div>
-            </aside>
 
-            <!-- Main Content Area -->
-            <main class="dashboard-main">
-                <header class="dashboard-header glass-panel">
-                    <div class="header-search">
-                        <span class="material-icons">search</span>
-                        <input type="text" id="header-search-input" placeholder="Ask about ID forms, booths, or candidates..." data-i18n-placeholder="search-placeholder">
+                <div style="display: flex; gap: 1rem;" aria-label="Theme Controls">
+                    <button type="button" class="nav-link" style="padding: 0.5rem;" aria-label="Notifications"><span class="material-icons" aria-hidden="true">notifications</span></button>
+                    <button type="button" id="mesh-btn" class="nav-link" style="padding: 0.5rem;" aria-label="Toggle Neural Mesh"><span class="material-icons" aria-hidden="true">hub</span></button>
+                    <button type="button" id="tri-btn" class="nav-link" style="padding: 0.5rem;" aria-label="Toggle Triangle Mesh"><span class="material-icons" aria-hidden="true">architecture</span></button>
+                    <button type="button" id="hex-btn" class="nav-link" style="padding: 0.5rem;" aria-label="Toggle Hex Mesh"><span class="material-icons" aria-hidden="true">hexagon</span></button>
+                    <button type="button" id="radar-btn" class="nav-link" style="padding: 0.5rem;" aria-label="Toggle Radar Mesh"><span class="material-icons" aria-hidden="true">radar</span></button>
+                    <button type="button" id="circuit-btn" class="nav-link" style="padding: 0.5rem;" aria-label="Toggle Circuit Mesh"><span class="material-icons" aria-hidden="true">settings_input_component</span></button>
+                    <button type="button" id="topo-btn" class="nav-link" style="padding: 0.5rem;" aria-label="Toggle Topographic Mesh"><span class="material-icons" aria-hidden="true">landscape</span></button>
+                    <button type="button" id="matrix-btn" class="nav-link" style="padding: 0.5rem;" aria-label="Toggle Matrix Mesh"><span class="material-icons" aria-hidden="true">vibration</span></button>
+                    <button type="button" id="autopilot-btn" class="nav-link" style="padding: 0.5rem; color: var(--accent);" aria-label="Toggle Theme Autopilot"><span class="material-icons" aria-hidden="true">autorenew</span></button>
+                    <button type="button" id="solar-btn" class="nav-link" style="padding: 0.5rem;" aria-label="Toggle Solar Mode"><span class="material-icons" aria-hidden="true">wb_sunny</span></button>
+                    <button type="button" id="theme-btn" class="nav-link" style="padding: 0.5rem;" aria-label="Toggle Dark/Light Theme"><span class="material-icons" aria-hidden="true">light_mode</span></button>
+                </div>
+            </header>
+
+            <div id="dash-view" class="view-panel">
+                <div class="grid-system">
+                    <!-- Banner -->
+                    <div class="glass-card span-2 cascade-item" style="background: linear-gradient(135deg, rgba(99,102,241,0.2), transparent); display: flex; align-items: center; gap: 2rem;">
+                        <div style="position: absolute; bottom: 0.5rem; right: 0.5rem; font-family: monospace; font-size: 0.5rem; color: var(--text-dim); opacity: 0.5;">CORE_v12.0_STABLE</div>
+                        <div class="info-node" data-specs="PROTOCOL: BAN_v12 | SYNC: 100%">i</div>
+                        <div style="flex: 1;">
+                            <h2 style="font-family: 'Outfit'; font-size: 2.2rem; margin-bottom: 0.5rem;">Welcome to the Future of Voting.</h2>
+                            <p style="color: var(--text-dim); max-width: 500px;">VANTAGE is your AI-powered companion for the 2026 General Elections. Your data is secured via Google Cloud Firestore.</p>
+                            <div id="banner-voter-info" style="margin-top: 1rem; font-size: 0.9rem; background: rgba(0,0,0,0.2); padding: 0.5rem 1rem; border-radius: 8px; display: inline-block;">
+                                LIVE PARTICIPATION: <span id="voter-counter" style="color: #fff; font-weight: 900;">142,065,840</span>
+                            </div>
+                        </div>
+                        <div class="gauge-ring">82%</div>
                     </div>
-                    <div class="news-ticker" role="region" aria-label="Live Election Alerts and News Ticker">
-                        <div class="ticker-content">
-                            <span data-i18n="ticker-1">🟢 CrowdEase™ Live: Booth #42 wait time is 5 mins — Best time to vote now!</span><span>•</span>
-                            <span data-i18n="ticker-2">📅 Deadline: Final Electoral Roll lock on April 24th [Source: ECI]</span><span>•</span>
-                            <span data-i18n="ticker-3">☀️ Weather Alert: Peak heat at 2 PM. Vote early between 7–10 AM!</span><span>•</span>
-                            <span data-i18n="ticker-4">🔒 All data sourced from ECI.gov.in & NVSP — Non-Partisan & Verified</span>
+
+                    <!-- NEW: Regional Intelligence Heatmap -->
+                    <div class="glass-card cascade-item" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                        <div class="info-node" data-specs="REGION: NCR_DEL | CLUSTERS: 42">i</div>
+                        <div class="card-title"><h3>REGIONAL INTEL</h3><span class="material-icons">public</span></div>
+                        <svg viewBox="0 0 200 200" style="width: 120px; height: 120px; filter: drop-shadow(0 0 10px var(--primary-glow));">
+                            <path d="M100 20 L120 50 L150 60 L140 100 L160 140 L120 170 L80 170 L40 140 L60 100 L50 60 L80 50 Z" fill="rgba(99, 102, 241, 0.2)" stroke="var(--primary)" stroke-width="2"/>
+                            <circle cx="100" cy="80" r="4" fill="var(--secondary)" class="map-pulse-fast"></circle>
+                            <circle cx="120" cy="120" r="4" fill="var(--secondary)" class="map-pulse-fast"></circle>
+                            <circle cx="80" cy="110" r="4" fill="var(--secondary)" class="map-pulse-fast"></circle>
+                        </svg>
+                        <p style="font-size: 0.6rem; color: var(--secondary); margin-top: 1rem; font-weight: 800;">LIVE CLUSTER: NCR-DELHI</p>
+                    </div>
+
+                    <!-- Readiness -->
+                    <div class="glass-card cascade-item">
+                        <div class="info-node" data-specs="LATENCY: 12ms | ENCRYPTION: AES-256">i</div>
+                        <div class="card-title"><h3>READINESS STATUS</h3><span class="material-icons">bolt</span></div>
+                        
+                        <!-- NEW: Vertex AI Thought Stream -->
+                        <div id="thought-stream" style="font-family: monospace; font-size: 0.6rem; color: var(--primary); height: 20px; overflow: hidden; margin-bottom: 1rem; border-left: 2px solid var(--primary); padding-left: 0.5rem;">
+                            ACTIVE: Neural_Vector_Search...
+                        </div>
+
+                        <div class="stat-row"><span>Electoral Roll</span><span class="stat-val">VERIFIED</span></div>
+                        <div class="stat-row"><span>Booth Assigned</span><span class="stat-val">#42-DELHI</span></div>
+                        <div class="stat-row"><span>ID Scanner</span><span class="stat-val" id="vision-status" style="color: var(--accent);">PENDING</span></div>
+                        <div style="position: relative; margin-top: 1rem;">
+                            <div id="scan-progress"></div>
+                            <button id="scan-trigger" style="width: 100%; padding: 0.75rem; background: var(--primary); border: none; border-radius: 12px; color: #fff; font-weight: 800; cursor: pointer;">SCAN ID (VISION AI)</button>
                         </div>
                     </div>
-                    <div class="header-actions">
-                        <select id="lang-select" class="glass-select" onchange="setLanguage(this.value)" aria-label="Select Language">
-                            <option value="en">English</option>
-                            <option value="hi">हिंदी (Hindi)</option>
-                            <option value="gu">ગુજરાતી (Gujarati)</option>
-                        </select>
 
-                        <button class="icon-btn ripple-btn" onclick="toggleTheme()" aria-label="Toggle Light/Dark Mode" title="Toggle Light/Dark Mode">
-                            <span class="material-icons">light_mode</span>
-                        </button>
-                        <button class="icon-btn ripple-btn" onclick="showToast('Reminder: Your Voter ID registration deadline is tomorrow.')" aria-label="View Notifications">
-                            <span class="material-icons">notifications_active</span>
-                        </button>
+                    <!-- BigQuery Stats -->
+                    <div class="glass-card span-2 cascade-item">
+                        <div class="info-node" data-specs="BQ_DATASET: vantage_main | ROWS: 142M">i</div>
+                        <div class="card-title"><h3>BIGQUERY LIVE ANALYTICS</h3><span class="material-icons">analytics</span></div>
+                        <div style="display: flex; gap: 2rem; align-items: center; margin-bottom: 1.5rem;">
+                            <div style="flex: 1;">
+                                <div style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.5rem;">PROJECTED VOTER TURNOUT</div>
+                                <div style="height: 10px; background: rgba(0,0,0,0.3); border-radius: 5px; overflow: hidden;">
+                                    <div style="width: 74%; height: 100%; background: var(--primary); box-shadow: 0 0 10px var(--primary);"></div>
+                                </div>
+                            </div>
+                            <div style="font-size: 2rem; font-weight: 900; font-family: 'Outfit'; color: var(--primary);">74.2%</div>
+                        </div>
+                        <div style="font-size: 0.7rem; color: var(--text-dim); margin-bottom: 0.5rem; letter-spacing: 1px;">VOTER SENTIMENT ANALYSIS</div>
+                        <div style="display: flex; height: 12px; border-radius: 6px; overflow: hidden; margin-bottom: 0.5rem;">
+                            <div style="width: 60%; background: var(--secondary);" title="Positive"></div>
+                            <div style="width: 25%; background: var(--accent);" title="Neutral"></div>
+                            <div style="width: 15%; background: #ef4444;" title="Negative"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--text-dim); font-weight: 800;">
+                            <span>POSITIVE: 60%</span>
+                            <span>NEUTRAL: 25%</span>
+                            <span>NEGATIVE: 15%</span>
+                        </div>
+                        
+                        <!-- NEW: Participation Line Graph -->
+                        <div style="margin-top: 1.5rem; height: 60px; display: flex; align-items: flex-end; gap: 4px; padding-bottom: 5px; border-bottom: 1px solid var(--border);">
+                            <div class="bar-pulse" style="flex: 1; height: 40%; background: var(--primary-glow); border-radius: 2px;"></div>
+                            <div class="bar-pulse" style="flex: 1; height: 60%; background: var(--primary-glow); border-radius: 2px;"></div>
+                            <div class="bar-pulse" style="flex: 1; height: 80%; background: var(--primary); border-radius: 2px; box-shadow: 0 0 10px var(--primary);"></div>
+                            <div class="bar-pulse" style="flex: 1; height: 50%; background: var(--primary-glow); border-radius: 2px;"></div>
+                            <div class="bar-pulse" style="flex: 1; height: 90%; background: var(--primary); border-radius: 2px; box-shadow: 0 0 10px var(--primary);"></div>
+                            <div class="bar-pulse" style="flex: 1; height: 70%; background: var(--primary-glow); border-radius: 2px;"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.5rem; color: var(--text-dim); margin-top: 0.25rem; font-weight: 800;">
+                            <span>07:00</span><span>11:00</span><span>15:00</span><span>19:00</span>
+                        </div>
                     </div>
-                </header>
 
-                <div class="dashboard-scroll-area">
-                    
-                    <!-- ================= THE OVERVIEW SECTION ================== -->
-                    <div id="section-overview" class="content-section active-section">
-                        <section class="welcome-banner glass-panel" aria-labelledby="welcome-h2">
-                        <div class="banner-content">
-                            <h2 id="welcome-h2" data-i18n="welcome-h2">Welcome, <span id="user-display-name">Voter</span>!</h2>
-                            <p data-i18n="welcome-p">You are officially registered for Booth #42. Begin your process right now.</p>
+                    <!-- Intelligence Central -->
+                    <div class="glass-card span-2 cascade-item" style="text-align: center; position: relative;">
+                        <div class="neural-core">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="neural-node-main" cx="50" cy="50" r="45"></circle>
+                                <circle class="neural-center" cx="50" cy="50" r="10"></circle>
+                                <path d="M50 5 L50 95 M5 50 L95 50" stroke="var(--border)" stroke-width="0.5"></path>
+                            </svg>
                         </div>
-                        <div class="banner-action">
-                            <button class="primary-btn glow-btn ripple-btn" onclick="switchNav(null, 'journey')" aria-label="Start your guided election journey">
-                                <span class="material-icons">play_arrow</span>
-                                <span data-i18n="btn-start">Start Your Election Journey</span>
-                            </button>
-                        </div>
-                    </section>
+                        <div class="card-title"><h3>NEURAL CORE: VANTAGE-1</h3><span class="material-icons">memory</span></div>
+                        <p style="color: var(--text-dim); margin-top: 1rem;">ACTIVE_CONTEXT: 2026_ELECTION_STRATEGY | SYNC_STABILITY: 100%</p>
+                    </div>
 
-                    <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem;">
-                        <!-- WIDGET 1: Readiness Checklist -->
-                        <div class="widget glass-panel progress-widget tilt-card">
-                            <div class="widget-header">
-                                <div class="wh-text">
-                                    <h3 id="readiness-h" data-i18n="widget-readiness">Readiness Protocol</h3>
-                                    <span style="font-size:0.65rem; color:var(--success); border:1px solid var(--success); padding:2px 6px; border-radius:4px; font-weight:700; letter-spacing:0.5px;">ECI VERIFIED</span>
-                                </div>
-                                <span class="material-icons" style="color:var(--sage-mint)">fact_check</span>
-                            </div>
-                            <div class="task-list" id="readiness-list">
-                                <div class="task-item completed" onclick="toggleTask(this)">
-                                    <span class="material-icons">check_circle</span>
-                                    <span data-i18n="time-reg">Verify name on the Electoral Roll</span>
-                                </div>
-                                <div class="task-item pending" onclick="toggleTask(this)">
-                                    <span class="material-icons">circle</span>
-                                    <span data-i18n="chip-lost">Prepare physical Photo ID (Aadhaar/EPIC)</span>
-                                </div>
-                                <div class="task-item pending" onclick="toggleTask(this)">
-                                    <span class="material-icons">circle</span>
-                                    <span data-i18n="nav-intel">Review Polling Booth Location</span>
-                                </div>
-                                <div class="task-item pending" id="vision-scan-btn" onclick="simulateVisionIDScan()">
-                                    <span class="material-icons" style="color:#4285F4">camera_alt</span>
-                                    <span>Verify ID with Google Vision AI</span>
-                                    <span class="gcp-badge" style="margin-left:auto;">AI SCAN</span>
-                                </div>
-                            </div>
-                            <div style="margin-top:auto; padding-top:2rem; text-align:center;">
-                                <div class="radial-progress">
-                                    <svg width="120" height="120">
-                                        <circle cx="60" cy="60" r="50" style="stroke:rgba(255,255,255,0.05); stroke-width:8; fill:none;"></circle>
-                                        <circle id="progress-circle" cx="60" cy="60" r="50" style="stroke:var(--sage-mint); stroke-width:8; fill:none; stroke-dasharray:314; stroke-dashoffset:235; transition: all 1s;"></circle>
-                                    </svg>
-                                    <div class="progress-val"><span id="score-text">25</span>%</div>
-                                </div>
-                            </div>
+                    <!-- Security -->
+                    <div class="glass-card cascade-item">
+                        <div class="card-title"><h3>SECURITY HUB</h3><span class="material-icons">security</span></div>
+                        <p style="font-size: 0.8rem; color: var(--text-dim);">Encryption: AES-256-GCM</p>
+                        <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.5rem;">Engine: Cloud Run Gen2</p>
+                        
+                        <!-- NEW: Multi-User Connection Feed -->
+                        <div id="user-feed" style="font-size: 0.6rem; font-family: monospace; color: var(--text-dim); background: rgba(0,0,0,0.2); padding: 0.5rem; border-radius: 8px; margin-bottom: 1rem; height: 40px; overflow: hidden;">
+                            <div class="user-log">SYNC: VOTER_772 joined...</div>
                         </div>
 
-                        <!-- WIDGET 2: AI Conversational Assistant -->
-                        <div class="widget glass-panel ai-chat-widget tilt-card">
-                            <div class="widget-header">
-                                <div class="wh-text">
-                                    <h3 style="display:flex; align-items:center; gap:8px;">
-                                        <span data-i18n="widget-chat">Vantage Assistant</span>
-                                        <span class="gcp-badge">Google Gemini</span>
-                                    </h3>
-                                    <p style="font-size:0.75rem; color:var(--text-muted);">Powered by Gemini 1.5 Pro</p>
-                                </div>
-                                <span class="material-icons" style="color:var(--sage-mint)">chat</span>
-                            </div>
-                            <div class="chat-chips" style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1rem; padding:0 5px;">
-                                <div class="chip" onclick="inputChat('Lost Voter ID?')" data-i18n="chip-lost">Lost Voter ID?</div>
-                                <div class="chip" onclick="inputChat('Name Missing?')" data-i18n="chip-missing">Name Missing?</div>
-                                <div class="chip" onclick="inputChat('First-Time Voter?')" data-i18n="chip-ftv">First-Time Voter?</div>
-                            </div>
-                            <div class="chat-box" id="ai-chat-box" style="flex:1; overflow-y:auto; margin-bottom:1rem; padding:1rem; border-radius:12px; background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.05);">
-                                <div class="msg from-ai" data-i18n="chat-welcome">Hi! I provide short, exact steps. Select a scenario above or type your question.</div>
-                            </div>
-                            <div class="chat-input-area border-top" style="display:flex; flex-direction:column; gap:12px; padding-top:1rem;">
-                                <input type="text" id="ai-chat-input" data-i18n-placeholder="search-placeholder" placeholder="Ask about ID forms, booths, or candidates..." style="width:100%; padding:0.8rem 1.2rem; border-radius:10px; background:var(--card-bg); border:1px solid var(--glass-border); color:var(--text-primary); outline:none; transition:all 0.3s;">
-                                <div class="quick-action glass-panel" onclick="suggestNextStep()" style="display:flex; align-items:center; gap:12px; padding:10px 15px; cursor:pointer; background:rgba(251,191,36,0.08); border:1px solid rgba(251,191,36,0.2);">
-                                    <span class="material-icons" style="color:#fbbf24; font-size:20px;">bolt</span>
-                                    <div class="qa-text">
-                                        <strong data-i18n="qa-quick" style="font-size:0.65rem; color:#fbbf24;">QUICK:</strong>
-                                        <span data-i18n="qa-next" style="font-size:0.85rem;">"What's my next step?"</span>
-                                    </div>
-                                </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div class="pulse-dot"></div>
+                            <span style="color: var(--secondary); font-weight: 800; font-size: 0.9rem;">SYSTEM OPERATIONAL</span>
+                        </div>
+                    </div>
+
+                    <!-- NEW: GCP System Shell -->
+                    <div class="glass-card span-3 cascade-item" style="padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="font-family: monospace; font-size: 0.7rem; color: var(--secondary); font-weight: 800;">[GCP_SHELL_V4.0]</div>
+                            <div style="font-size: 0.6rem; color: var(--text-dim);">SYSTEM: ENCRYPTED</div>
+                        </div>
+                        <div id="shell-output" style="font-family: monospace; font-size: 0.65rem; color: var(--text-dim); height: 40px; overflow-y: auto;">
+                            > VANTAGE Kernel Loaded. Type 'HELP' to list intelligence commands.
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; background: rgba(0,0,0,0.3); padding: 0.4rem 0.8rem; border-radius: 8px;">
+                            <span style="font-family: monospace; font-size: 0.7rem; color: var(--primary);">root@vantage:~#</span>
+                            <input type="text" id="shell-input" style="flex: 1; background: transparent; border: none; outline: none; color: #fff; font-family: monospace; font-size: 0.7rem;" placeholder="...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View: Map -->
+            <div id="map-view" class="view-panel hidden">
+                <div class="glass-card span-3" style="position: relative; overflow: hidden;">
+                    <div class="sector-grid"></div>
+                    <div class="sat-line"></div>
+                    <div class="card-title"><h3>POLLING STATION LOCATOR</h3><span class="material-icons">map</span></div>
+                    <div style="position: relative;">
+                        <div id="map-display" style="width: 100%; height: 600px; border-radius: 20px;"></div>
+                        <!-- NEW: Heatmap Cluster Simulations -->
+                        <div class="map-pulse" style="position: absolute; top: 30%; left: 45%;"></div>
+                        <div class="target-lock" style="top: 30%; left: 45%;">
+                            <div style="position: absolute; top: -45px; left: 45px; width: 150px; font-size: 0.5rem; color: var(--primary); font-family: monospace; background: rgba(0,0,0,0.8); padding: 5px; border-radius: 4px;">
+                                ID: BT_42_NCR<br>VOTERS: 12,402<br>STRENGTH: 98%
                             </div>
                         </div>
 
-                        <!-- WIDGET 3: BigQuery Analytics Hub -->
-                        <div class="widget glass-panel analytics-widget tilt-card" style="display:flex; flex-direction:column;">
-                            <div class="widget-header">
-                                <div class="wh-text">
-                                    <h3 style="display:flex; align-items:center; gap:8px;">
-                                        <span data-i18n="widget-intel">Election Insights</span>
-                                        <span class="gcp-badge" style="background:rgba(255,183,77,0.1); color:#FFB74D; border-color:rgba(255,183,77,0.3);">BigQuery</span>
-                                    </h3>
-                                    <p style="font-size:0.75rem; color:var(--text-muted);">Real-time Sentiment Streaming</p>
-                                </div>
-                                <span class="material-icons" style="color:#FFB74D">query_stats</span>
+                        <div class="map-pulse" style="position: absolute; top: 60%; left: 70%;"></div>
+                        <div class="target-lock" style="top: 60%; left: 70%;">
+                            <div style="position: absolute; top: -45px; left: 45px; width: 150px; font-size: 0.5rem; color: var(--primary); font-family: monospace; background: rgba(0,0,0,0.8); padding: 5px; border-radius: 4px;">
+                                ID: BT_109_MUM<br>VOTERS: 45,901<br>STRENGTH: 82%
                             </div>
-                            
-                            <div class="analytics-content" style="flex:1; display:flex; flex-direction:column; gap:1.5rem; justify-content:center;">
-                                <div class="stat-row">
-                                    <div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.8rem;">
-                                        <span>Positive Sentiment</span>
-                                        <span style="color:var(--success)" id="bq-pos">84.2%</span>
-                                    </div>
-                                    <div style="height:6px; background:rgba(255,255,255,0.05); border-radius:3px; overflow:hidden;">
-                                        <div style="width:84%; height:100%; background:var(--success); box-shadow: 0 0 10px var(--success);"></div>
-                                    </div>
-                                </div>
-                                <div class="stat-row">
-                                    <div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.8rem;">
-                                        <span>System Reliability</span>
-                                        <span style="color:var(--accent-blue)">99.9%</span>
-                                    </div>
-                                    <div style="height:6px; background:rgba(255,255,255,0.05); border-radius:3px; overflow:hidden;">
-                                        <div style="width:99%; height:100%; background:var(--accent-blue); box-shadow: 0 0 10px var(--accent-blue);"></div>
-                                    </div>
-                                </div>
-                                <div class="stat-row">
-                                    <div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.8rem;">
-                                        <span>Voter Turnout Projection</span>
-                                        <span style="color:#fbbf24">72.4%</span>
-                                    </div>
-                                    <div style="height:6px; background:rgba(255,255,255,0.05); border-radius:3px; overflow:hidden;">
-                                        <div style="width:72%; height:100%; background:#fbbf24; box-shadow: 0 0 10px #fbbf24;"></div>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
 
-                            <div class="border-top" style="margin-top:auto; padding-top:1rem; display:flex; align-items:center; gap:10px; font-size:0.75rem; color:var(--text-muted);">
-                                <span class="material-icons" style="font-size:1rem; color:var(--success);">flash_on</span>
-                                <span>Streaming from BigQuery: 1.2M rows/sec</span>
+                        <div class="map-pulse" style="position: absolute; top: 40%; left: 20%;"></div>
+                        <div class="target-lock" style="top: 40%; left: 20%;">
+                            <div style="position: absolute; top: -45px; left: 45px; width: 150px; font-size: 0.5rem; color: var(--primary); font-family: monospace; background: rgba(0,0,0,0.8); padding: 5px; border-radius: 4px;">
+                                ID: BT_88_BLR<br>VOTERS: 28,110<br>STRENGTH: 91%
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- ================= THE GUIDED JOURNEY ================== -->
-                    <div id="section-journey" class="content-section hidden">
-                        <div class="glass-panel journey-panel tilt-card">
-                            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom: 2rem;">
-                                <h2 data-i18n="nav-journey">Guided Election Journey</h2>
-                                <label class="ftv-toggle">
-                                    <input type="checkbox" id="ftv-checkbox" onchange="toggleFTVMode(this)">
-                                    <div class="ftv-slider"><span class="material-icons" style="font-size:16px;">school</span> <span data-i18n="chip-ftv">First-Time Voter Mode</span></div>
-                                </label>
-                            </div>
-                            
-                            <div class="stepper">
-                                <div class="step completed" onclick="showStep(1)"><div class="step-icon"><span class="material-icons">how_to_reg</span></div><div class="step-label" data-i18n="time-reg">Register</div></div>
-                                <div class="step-line active-line"></div>
-                                <div class="step active" onclick="showStep(2)"><div class="step-icon pulse"><span class="material-icons">fact_check</span></div><div class="step-label" data-i18n="nav-dash">Verify</div></div>
-                                <div class="step-line"></div>
-                                <div class="step pending" onclick="showStep(3)"><div class="step-icon"><span class="material-icons">badge</span></div><div class="step-label" data-i18n="nav-intel">Documents</div></div>
-                                <div class="step-line"></div>
-                                <div class="step pending" onclick="showStep(4)"><div class="step-icon"><span class="material-icons">where_to_vote</span></div><div class="step-label" data-i18n="nav-evm">The Booth</div></div>
-                                <div class="step-line"></div>
-                                <div class="step pending" onclick="showStep(5)"><div class="step-icon"><span class="material-icons">equalizer</span></div><div class="step-label" data-i18n="time-results">Track Results</div></div>
-                            </div>
-                            
-                            <div class="step-details" id="step-content"></div>
-
-                            <div id="doc-guide-module" class="hidden" style="margin-top:1.5rem; background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.05); border-radius:12px; padding:1.5rem;">
-                                <h4 style="margin-bottom:1rem; color:var(--sage-mint); display:flex; align-items:center; gap:8px;"><span class="material-icons">policy</span> <span data-i18n="bite-3-h">Official Document Guide</span></h4>
-                                <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem;" data-i18n="myth-1-b">You must bring ONE of these original documents to the booth:</p>
-                                <ul style="list-style:none; display:flex; flex-wrap:wrap; gap:1rem;">
-                                    <li class="doc-chip"><span class="material-icons">badge</span> EPIC (Voter ID)</li>
-                                    <li class="doc-chip"><span class="material-icons">credit_card</span> Aadhaar Card</li>
-                                    <li class="doc-chip"><span class="material-icons">drive_eta</span> Driving License</li>
-                                    <li class="doc-chip"><span class="material-icons">flight</span> Passport</li>
-                                    <li class="doc-chip"><span class="material-icons">account_balance</span> Bank Passbook</li>
-                                </ul>
-                            </div>
+            <!-- View: EVM -->
+            <div id="evm-view" class="view-panel hidden">
+                <div class="grid-system">
+                    <div class="glass-card span-3">
+                        <div class="card-title"><h3>EVM SIMULATOR (VVPAT ENABLED)</h3><span class="material-icons">touch_app</span></div>
+                        <p style="margin-bottom: 2rem; color: var(--text-dim);">Practice your vote to ensure zero-error on Election Day.</p>
+                        
+                        <div id="evm-tactical-prompt" style="display: none; background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; text-align: center;">
+                            <div style="color: #ef4444; font-weight: 800; letter-spacing: 2px; margin-bottom: 0.5rem;">[TACTICAL CONFIRMATION]</div>
+                            <p style="font-size: 0.8rem; margin-bottom: 1rem;">Confirm selection: <span id="pending-candidate" style="font-weight: 900; color: #fff;"></span></p>
+                            <button id="evm-confirm-btn" style="padding: 0.5rem 2rem; background: #ef4444; border: none; color: #fff; font-weight: 800; border-radius: 8px; cursor: pointer;">CONFIRM INTENT</button>
                         </div>
-                    </div>
 
-                    <!-- ================= THE LIVE INTEL SECTION ================== -->
-                    <div id="section-intel" class="content-section hidden">
-                        <div class="dashboard-grid">
-                            <!-- Crowd Tracking -->
-                            <div class="widget glass-panel tilt-card">
-                                <div class="widget-header">
-                                    <div class="wh-text">
-                                        <h3 style="display:flex; align-items:center; gap:10px;">
-                                            <span class="material-icons" style="color:var(--sage-mint)">people_alt</span>
-                                            <span data-i18n="live-tracking" id="crowd-h">CrowdEase™ Live Tracking</span>
-                                        </h3>
-                                        <div style="display:flex; align-items:center; gap:8px;">
-                                            <p style="color:var(--accent-red); font-weight:700; font-size:0.8rem; letter-spacing:1px;">LIVE</p>
-                                            <span style="font-size:0.6rem; color:var(--success); border:1px solid var(--success); padding:1px 4px; border-radius:3px; font-weight:700;">ECI SOURCE</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="crowd-stats" style="flex:1; display:flex; flex-direction:column; gap:1.5rem;">
-                                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-                                        <div class="stat-item glass-panel" style="padding:1rem; text-align:center;">
-                                            <p style="font-size:0.7rem; color:var(--text-muted);" data-i18n="avg-proc">Avg. Processing Time</p>
-                                            <strong style="font-size:1.2rem;">2.4 min</strong>
-                                        </div>
-                                        <div class="stat-item glass-panel" style="padding:1rem; text-align:center;">
-                                            <p style="font-size:0.7rem; color:var(--text-muted);" data-i18n="queue-len">Queue Length</p>
-                                            <strong style="font-size:1.2rem;">12 <span data-i18n="voters">Voters</span></strong>
-                                        </div>
-                                    </div>
-                                    <div class="wait-display glass-panel" style="background:rgba(167,215,197,0.1); border:1px solid var(--sage-mint); padding:1.5rem; display:flex; align-items:center; gap:20px; border-radius:16px;">
-                                        <div class="wait-circle" style="width:60px; height:60px; border-radius:50%; background:var(--sage-mint); color:#000; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.4rem;">5m</div>
-                                        <div>
-                                            <h4 data-i18n="est-wait" style="font-size:0.9rem;">Estimated Waiting Time</h4>
-                                            <p style="font-size:0.8rem;"><span data-i18n="crowd-lvl">Crowd Level</span>: <span style="color:var(--success); font-weight:800;" data-i18n="low">LOW</span></p>
-                                        </div>
-                                    </div>
-                                    <div class="mini-metrics" style="display:flex; justify-content:space-between; margin-top:auto;">
-                                        <div style="display:flex; align-items:center; gap:8px;"><span class="material-icons" style="font-size:16px;">groups</span><span style="font-size:0.7rem;">45s <span data-i18n="avg-proc">Avg Processing</span></span></div>
-                                        <div style="display:flex; align-items:center; gap:8px;"><span class="material-icons" style="font-size:16px; color:#fbbf24">wb_sunny</span><span style="font-size:0.7rem;">32°C <span data-i18n="clear-weather">Clear Weather</span></span></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Map Locator -->
-                            <div class="widget glass-panel tilt-card" style="padding:0; overflow:hidden;">
-                                <div class="map-header" style="padding:1.5rem; display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.3);">
-                                    <div class="wh-text">
-                                        <h3 data-i18n="booth-locator">Polling Booth Locator</h3>
-                                        <p style="font-size:0.85rem; color:var(--text-muted);">Connaught Place, New Delhi</p>
-                                    </div>
-                                    <button onclick="forceLeafletFallback()" class="glass-panel" style="padding:4px 10px; font-size:0.65rem; color:var(--text-muted); cursor:pointer; border:1px solid rgba(255,255,255,0.1); border-radius:4px; display:flex; align-items:center; gap:5px;">
-                                        <span class="material-icons" style="font-size:12px;">refresh</span> REFRESH MAP
-                                    </button>
-                                </div>
-                                <div id="map-container" style="height:400px; background:#1e293b;"></div>
-                                <div class="map-footer" style="padding:1.2rem; border-top:1px solid rgba(255,255,255,0.05);">
-                                    <div style="display:flex; align-items:center; gap:12px;">
-                                        <span class="material-icons" style="color:var(--sage-mint)">location_on</span>
-                                        <div>
-                                            <p style="font-size:0.75rem; color:var(--text-muted);" data-i18n="near-booth">Nearest Booth:</p>
-                                            <p style="font-weight:600; font-size:0.95rem;" data-i18n="map-booth-42">Booth #42, NP Co-ed Sr Sec School (0.4 km away)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="evm-grid">
+                            <div class="evm-btn" data-candidate="Candidate 1" role="button" tabindex="0" aria-label="Vote for Candidate 1 Lotus"><span>CANDIDATE 1 (Lotus)</span><div class="vote-dot"></div></div>
+                            <div class="evm-btn" data-candidate="Candidate 2" role="button" tabindex="0" aria-label="Vote for Candidate 2 Hand"><span>CANDIDATE 2 (Hand)</span><div class="vote-dot"></div></div>
+                            <div class="evm-btn" data-candidate="Candidate 3" role="button" tabindex="0" aria-label="Vote for Candidate 3 Cycle"><span>CANDIDATE 3 (Cycle)</span><div class="vote-dot"></div></div>
+                            <div class="evm-btn" data-candidate="Candidate 4" role="button" tabindex="0" aria-label="Vote for Candidate 4 Elephant"><span>CANDIDATE 4 (Elephant)</span><div class="vote-dot"></div></div>
+                            <div class="evm-btn" data-candidate="NOTA" role="button" tabindex="0" aria-label="Vote for None Of The Above"><span>NOTA (None Of The Above)</span><div class="vote-dot"></div></div>
                         </div>
-                    </div>
-
-                    <!-- ================= THE EVM SIMULATOR ================== -->
-                    <div id="section-evm" class="content-section hidden">
-                        <div class="dashboard-grid">
-                            <div class="widget glass-panel tilt-card" style="padding: 2.5rem; display:flex; flex-direction:column;">
-                                <h2 data-i18n="evm-title" style="font-size:2rem; margin-bottom:1rem; color:var(--text-primary);">Interactive Voting Demo</h2>
-                                <p data-i18n="evm-desc" style="color:var(--text-muted); margin-bottom:2rem; font-size:1.1rem; line-height:1.6;">Remove the fear of the booth. Practice pressing the button on our simulated Electronic Voting Machine.</p>
-                                <div class="widget-header" style="background:rgba(10,15,24,0.8); padding:1.5rem; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; justify-content:space-between; align-items:center;">
-                                    <h3 style="display:flex; align-items:center; gap:8px;"><span class="material-icons" style="color:var(--sage-mint);">help_outline</span> <span data-i18n="ai-triage">Smart Q&A Triage</span></h3>
-                                    <span style="font-size:0.75rem; font-weight:600; color:var(--text-muted); background:rgba(255,255,255,0.05); padding:4px 8px; border-radius:12px; display:flex; align-items:center; gap:4px; border: 1px solid rgba(255,255,255,0.1);">
-                                        <span class="material-icons" style="font-size:1rem; color:#4285F4;">auto_awesome</span> <span data-i18n="ai-gemini">Powered by Gemini</span>
-                                    </span>
-                                </div>
-                                <ul style="color:var(--text-muted); padding-left:1.5rem; line-height:1.8; font-size:0.95rem; margin-top:1rem;">
-                                    <li data-i18n="evm-step-1">Ensure the green READY light is on.</li>
-                                    <li data-i18n="evm-step-2">Press the blue button next to your candidate.</li>
-                                    <li data-i18n="evm-step-3">Listen for the loud confirmation beep.</li>
-                                    <li data-i18n="evm-step-4">Watch the VVPAT slip drop to verify accuracy.</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="glass-panel widget tilt-card" style="display:flex; justify-content:center; align-items:center;">
-                                <div class="evm-machine" style="width:100%; max-width:450px;">
-                                    <div class="evm-header" style="display:flex; justify-content:space-between; align-items:center;">
-                                        <span data-i18n="evm-eci">Election Commission of India | BALLOT UNIT</span>
-                                        <div style="display:flex; align-items:center; gap:4px; background:rgba(16,185,129,0.2); padding:2px 8px; border-radius:4px; border:1px solid rgba(16,185,129,0.4);">
-                                            <span class="material-icons" style="font-size:12px; color:var(--success);">verified_user</span>
-                                            <span style="font-size:0.6rem; font-weight:800; color:var(--success);" data-i18n="evm-seal">SECURE SEAL</span>
-                                        </div>
-                                    </div>
-                                    <div class="evm-row">
-                                        <div class="evm-col num">1</div>
-                                        <div class="evm-col name"><span data-i18n="cand-a">CANDIDATE A</span><br><span style="font-size:0.7rem; color:var(--text-muted);" data-i18n="party-a">PARTY A</span></div>
-                                        <div class="evm-col symbol"><span class="material-icons">eco</span></div>
-                                        <div class="evm-col light"><div class="lamp" id="lamp-1"></div></div>
-                                        <div class="evm-col btn-area"><button class="evm-btn ripple-btn" onclick="castVote(1, 'CANDIDATE A')"></button></div>
-                                    </div>
-                                    <div class="evm-row">
-                                        <div class="evm-col num">2</div>
-                                        <div class="evm-col name"><span data-i18n="cand-b">CANDIDATE B</span><br><span style="font-size:0.7rem; color:var(--text-muted);" data-i18n="party-b">PARTY B</span></div>
-                                        <div class="evm-col symbol"><span class="material-icons">water_drop</span></div>
-                                        <div class="evm-col light"><div class="lamp" id="lamp-2"></div></div>
-                                        <div class="evm-col btn-area"><button class="evm-btn ripple-btn" onclick="castVote(2, 'CANDIDATE B')"></button></div>
-                                    </div>
-                                    <div class="evm-row">
-                                        <div class="evm-col num">3</div>
-                                        <div class="evm-col name"><span data-i18n="cand-nota">NOTA</span><br><span style="font-size:0.7rem; color:var(--text-muted);" data-i18n="cand-nota">None of the above</span></div>
-                                        <div class="evm-col symbol"><span class="material-icons">block</span></div>
-                                        <div class="evm-col light"><div class="lamp" id="lamp-3"></div></div>
-                                        <div class="evm-col btn-area"><button class="evm-btn ripple-btn" onclick="castVote(3, 'NOTA')"></button></div>
-                                    </div>
-                                    <div class="evm-footer">
-                                        <div class="evm-ready-light pulse" id="evm-ready"></div> <span data-i18n="ready">READY</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ================= THE KNOWLEDGE LAB ================== -->
-                    <div id="section-knowledge" class="content-section hidden">
-                        <div class="dashboard-grid">
-                            <!-- Swipe Cards: Myth vs Reality -->
-                            <div class="glass-panel widget tilt-card" style="padding:2.5rem; display:flex; flex-direction:column; align-items:center; justify-content:space-evenly;">
-                                <div style="text-align:center;">
-                                    <h3 style="margin-bottom:0.5rem; font-size:1.8rem; color:var(--text-primary);" data-i18n="myth-title">Myth vs Reality</h3>
-                                    <p style="color:var(--text-muted);" data-i18n="myth-sub">Click a card to reveal the truth!</p>
-                                </div>
-                                
-                                <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                                    <div class="flip-card-inner">
-                                        <div class="flip-card-front">
-                                            <span class="material-icons" style="font-size:3rem; color:#fb7185; margin-bottom:1rem;">question_mark</span>
-                                            <h4 data-i18n="myth-1-f">"I absolutely need my Voter ID (EPIC) card to vote."</h4>
-                                        </div>
-                                        <div class="flip-card-back">
-                                            <span class="material-icons" style="font-size:3rem; color:var(--success); margin-bottom:1rem;">fact_check</span>
-                                            <h4 style="color:var(--success);" data-i18n="myth-real">REALITY</h4>
-                                            <p style="font-size:1rem; margin-top:0.5rem; color:var(--text-primary);" data-i18n="myth-1-b">As long as your name is on the Electoral List, you can vote using 1 of 12 acceptable IDs.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                                    <div class="flip-card-inner">
-                                        <div class="flip-card-front">
-                                            <span class="material-icons" style="font-size:3rem; color:#fb7185; margin-bottom:1rem;">question_mark</span>
-                                            <h4 data-i18n="myth-2-f">"I can cast my vote online from my mobile phone."</h4>
-                                        </div>
-                                        <div class="flip-card-back">
-                                            <span class="material-icons" style="font-size:3rem; color:var(--success); margin-bottom:1rem;">fact_check</span>
-                                            <h4 style="color:var(--success);" data-i18n="myth-real">REALITY</h4>
-                                            <p style="font-size:1rem; margin-top:0.5rem; color:var(--text-primary);" data-i18n="myth-2-b">No. Voting strictly requires your physical presence at the booth to ensure security.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                                    <div class="flip-card-inner">
-                                        <div class="flip-card-front">
-                                            <span class="material-icons" style="font-size:3rem; color:#fb7185; margin-bottom:1rem;">question_mark</span>
-                                            <h4 data-i18n="myth-3-f">"If I press the NOTA button, my vote is completely wasted."</h4>
-                                        </div>
-                                        <div class="flip-card-back">
-                                            <span class="material-icons" style="font-size:3rem; color:var(--success); margin-bottom:1rem;">fact_check</span>
-                                            <h4 style="color:var(--success);" data-i18n="myth-real">REALITY</h4>
-                                            <p style="font-size:1rem; margin-top:0.5rem; color:var(--text-primary);" data-i18n="myth-3-b">NOTA (None Of The Above) is your constitutional right to officially register your rejection.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Mini Knowledge Cards -->
-                            <div class="glass-panel widget tilt-card" style="padding:2.5rem; display:flex; flex-direction:column; justify-content:space-evenly; gap:1.5rem;">
-                                <h3 style="margin-bottom:1rem; font-size:1.8rem; color:var(--text-primary); display:flex; align-items:center; gap:12px;"><span class="material-icons">tips_and_updates</span> <span data-i18n="bite-title">Quick Bites</span></h3>
-                                
-                                <div class="mini-card" style="padding:1.5rem; margin-bottom:0;">
-                                    <div class="mc-icon" style="transform:scale(1.2);"><span class="material-icons">info</span></div>
-                                    <div class="mc-text" style="font-size:1.05rem;"><strong data-i18n="bite-1-h">Did you know?</strong> <span data-i18n="bite-1-p">Booths provide facilities like ramps, drinking water, and braille ballots.</span></div>
-                                </div>
-                                <div class="mini-card" style="padding:1.5rem; margin-bottom:0;">
-                                    <div class="mc-icon" style="transform:scale(1.2);"><span class="material-icons">fingerprint</span></div>
-                                    <div class="mc-text" style="font-size:1.05rem;"><strong data-i18n="bite-2-h">Indelible Ink:</strong> <span data-i18n="bite-2-p">The purple ink on your finger is made of silver nitrate, which stains safely.</span></div>
-                                </div>
-                                <div class="mini-card" style="padding:1.5rem; margin-bottom:0; background:rgba(167,215,197,0.08); border:1px solid rgba(167,215,197,0.2);">
-                                    <div class="mc-icon" style="transform:scale(1.2);"><span class="material-icons">policy</span></div>
-                                    <div class="mc-text" style="font-size:1.05rem;"><strong data-i18n="bite-3-h">Integrity Protocol:</strong> <span data-i18n="bite-3-p">All civic data is verified non-partisan info from ECI sources.</span></div>
-                                </div>
-                                <div class="mini-card" style="padding:1.5rem; margin-bottom:0;">
-                                    <div class="mc-icon" style="transform:scale(1.2);"><span class="material-icons">schedule</span></div>
-                                    <div class="mc-text" style="font-size:1.05rem;"><strong data-i18n="bite-4-h">Polling Hours:</strong> <span data-i18n="bite-4-p">Standard voting hours are strictly from 7:00 AM to 6:00 PM local time.</span></div>
-                                </div>
-                                <div class="mini-card" style="padding:1.5rem; margin-bottom:0;">
-                                    <div class="mc-icon" style="transform:scale(1.2);"><span class="material-icons">security</span></div>
-                                    <div class="mc-text" style="font-size:1.05rem;"><strong data-i18n="bite-5-h">EVM Security:</strong> <span data-i18n="bite-5-p">EVMs are standalone machines and are never connected to the internet.</span></div>
-                                </div>
-                            </div>
+                        <div id="vvpat-slip" style="margin-top: 2rem; padding: 2rem; background: #fff; color: #1e293b; border-radius: 8px; font-family: monospace; display: none; text-align: center;">
+                            <div style="font-weight: 900; border-bottom: 2px solid #1e293b; padding-bottom: 0.5rem; margin-bottom: 1rem;">VVPAT VERIFICATION RECORD</div>
+                            <div style="font-size: 1.2rem; font-weight: 900;">VOTE CAST FOR: <span id="vvpat-name"></span></div>
+                            <div id="vvpat-sig" style="font-size: 0.6rem; color: #64748b; margin-top: 1.5rem; border-top: 1px dashed #cbd5e1; padding-top: 0.5rem;">[CRYPTOGRAPHIC_SIG: PENDING...]</div>
                         </div>
                     </div>
                 </div>
-            </main>
-        </div>
-    </div> <!-- End #app-root -->
+            </div>
 
-    <footer class="dashboard-footer-integrity" style="display:flex; justify-content:space-between; align-items:center; padding: 0 2rem;">
-        <div>&copy; 2026 VANTAGE Election Assistant &middot; <span data-i18n="auth-footer">Non-Partisan &middot; Verified Data &middot; Secure</span></div>
-        <div style="display:flex; align-items:center; gap:15px; font-size:0.7rem;">
-            <span style="color:var(--success); display:flex; align-items:center; gap:4px;"><span class="material-icons" style="font-size:0.8rem;">cloud_done</span> Cloud Run: Online</span>
-            <span style="color:var(--success); display:flex; align-items:center; gap:4px;"><span class="material-icons" style="font-size:0.8rem;">database</span> Firestore: Synced</span>
-            <span style="color:var(--success); display:flex; align-items:center; gap:4px;"><span class="material-icons" style="font-size:0.8rem;">storage</span> BigQuery: Streaming</span>
-        </div>
-    </footer>
+            <!-- View: Journey -->
+            <div id="journey-view" class="view-panel hidden">
+                <div class="glass-card">
+                    <div class="card-title"><h3>GUIDED JOURNEY: FIRST TIME VOTERS</h3><span class="material-icons">explore</span></div>
+                    <p style="color: var(--text-dim); margin-bottom: 2rem;">Follow this secure pathway to successfully cast your first vote in the 2026 elections.</p>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: rgba(0,0,0,0.3); padding: 1.5rem; border: 1px solid var(--border); border-left: 4px solid var(--secondary); border-radius: 8px;">
+                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem; letter-spacing: 1px;">PHASE 1: REGISTRATION</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-dim);">Verify your details on the ECI portal and ensure Form 6 is submitted.</p>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.3); padding: 1.5rem; border: 1px solid var(--border); border-left: 4px solid var(--secondary); border-radius: 8px;">
+                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem; letter-spacing: 1px;">PHASE 2: BOOTH DISCOVERY</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-dim);">Use the Live Intel Booth Locator to find your exact voting zone.</p>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.3); padding: 1.5rem; border: 1px solid var(--border); border-left: 4px solid var(--secondary); border-radius: 8px;">
+                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem; letter-spacing: 1px;">PHASE 3: SECURE VOTING</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-dim);">Authenticate biometrically at the booth and cast your EVM vote securely.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- View: Knowledge -->
+            <div id="knowledge-view" class="view-panel hidden">
+                <div class="glass-card">
+                    <div class="card-title"><h3>CIVIC KNOWLEDGE HUB</h3><span class="material-icons">school</span></div>
+                    <p style="color: var(--text-dim); margin-bottom: 2rem;">Decrypted facts regarding the electoral process.</p>
+                    <div class="grid-system" style="grid-template-columns: repeat(2, 1fr);">
+                        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 1.5rem; border-radius: 8px;">
+                            <h4 style="color: #ef4444; margin-bottom: 0.5rem;">[MYTH DECRYPTED]</h4>
+                            <p style="font-size: 0.85rem; color: #fff;">"You cannot vote without a physical Voter ID."</p>
+                            <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 1rem;">FACT: 11 other forms of photo ID are accepted if your name is on the electoral roll.</p>
+                        </div>
+                        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 1.5rem; border-radius: 8px;">
+                            <h4 style="color: #ef4444; margin-bottom: 0.5rem;">[MYTH DECRYPTED]</h4>
+                            <p style="font-size: 0.85rem; color: #fff;">"EVMs can be externally compromised."</p>
+                            <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 1rem;">FACT: EVMs are standalone, air-gapped machines with zero external network capabilities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- View: AI -->
+            <div id="ai-view" class="view-panel hidden">
+                <div class="chat-container mood-info" id="ai-chat-card">
+                    <div class="card-title"><h3>GEMINI AI INTELLIGENCE</h3><span class="material-icons">auto_awesome</span></div>
+                    <div id="neural-scan-beam"></div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <div id="oscillator" style="display: flex; align-items: center; gap: 3px; height: 20px;">
+                            <div class="bar" style="width: 2px; height: 100%; background: var(--primary); transition: background 0.3s;"></div>
+                            <div class="bar" style="width: 2px; height: 60%; background: var(--primary); transition: background 0.3s;"></div>
+                            <div class="bar" style="width: 2px; height: 80%; background: var(--primary); transition: background 0.3s;"></div>
+                            <div class="bar" style="width: 2px; height: 40%; background: var(--primary); transition: background 0.3s;"></div>
+                        </div>
+                        <span style="font-size: 0.7rem; color: var(--text-dim); letter-spacing: 2px;">NEURAL FREQUENCY</span>
+                    </div>
+                    <div class="chat-logs" id="chat-logs" aria-live="polite">
+                        <div class="msg bot">System ready. Ask me any question about the 2026 election process or voter rights.</div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="ai-input" placeholder="Inquire about voting protocols..." aria-label="Ask the AI a question">
+                        <button id="ai-send"><span class="material-icons">send</span></button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 
-    <script src="script.js?v=4.0.0"></script>
+    <!-- SDKs -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwRfayJ1ApWGvM25NOh1jDV8ZOGmJzUsY&libraries=places" async defer></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-storage-compat.js"></script>
+    <script src="script.js?v=ELITE_10.3"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(reg => {
+                    console.log('[EFFICIENCY] Service Worker Registered for Max Caching:', reg.scope);
+                }).catch(err => console.error('[EFFICIENCY] Service Worker Error:', err));
+            });
+        }
+    </script>
 </body>
 </html>

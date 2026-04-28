@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vantage.google-challenge.com/sitemap.xml
